@@ -3,9 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { getSiteContent, getHomeContent } from '../lib/content';
 import ArtLayer from '../components/ArtLayer.astro';
 import Stepper from '../components/Stepper.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import SectionHeading from '../components/ui/SectionHeading.astro';
+import TextLink from '../components/ui/TextLink.astro';
+import Icon from '../components/ui/Icon.astro';
 import { getImage } from 'astro:assets';
 
-// Artwork imports
+// Artwork imports - Hero
 import imgHeroDesktop from '../assets/art/02_hero_background.webp';
 import imgHeroMobile from '../assets/art/01a_background_top.webp';
 import imgWave1 from '../assets/art/09_wave_1.webp';
@@ -16,9 +20,21 @@ import imgCube2 from '../assets/art/07_cube_small_2.webp';
 import imgCube3 from '../assets/art/07_cube_small_3.webp';
 import imgGradBlueDark from '../assets/art/11a_gradient_blue_dark.webp';
 
+// Artwork imports - Section 01 (Who we are)
+import imgBgMiddle from '../assets/art/01b_background_middle.webp';
+import imgGradBlueTop from '../assets/art/11d_gradient_blue_top.webp';
+import imgGlow5 from '../assets/art/10_glow_5.webp';
+import imgGlow6 from '../assets/art/10_glow_6.webp';
+
+// Artwork imports - Section 02 (What we do)
+import imgWave2 from '../assets/art/09_wave_2.webp';
+import imgWave3 from '../assets/art/09_wave_3.webp';
+import imgSectionOverlay from '../assets/art/03_section_overlay.webp';
+import imgCubeLarge from '../assets/art/05_cube_large.webp';
+
 const site = await getSiteContent();
 const homeData = await getHomeContent();
-const { hero, stepper } = homeData;
+const { hero, stepper, whoWeAre, whatWeDo } = homeData;
 
 // Optimize images for hero
 const optHeroDesktop = await getImage({ src: imgHeroDesktop, width: 2032 });
@@ -30,6 +46,18 @@ const optCube1 = await getImage({ src: imgCube1, width: 300 });
 const optCube2 = await getImage({ src: imgCube2, width: 300 });
 const optCube3 = await getImage({ src: imgCube3, width: 300 });
 const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 568 });
+
+// Optimize images for Section 01
+const optBgMiddle = await getImage({ src: imgBgMiddle, width: 1400 });
+const optGradBlueTop = await getImage({ src: imgGradBlueTop, width: 600 });
+const optGlow5 = await getImage({ src: imgGlow5, width: 300 });
+const optGlow6 = await getImage({ src: imgGlow6, width: 300 });
+
+// Optimize images for Section 02
+const optWave2 = await getImage({ src: imgWave2, width: 900 });
+const optWave3 = await getImage({ src: imgWave3, width: 900 });
+const optSectionOverlay = await getImage({ src: imgSectionOverlay, width: 1400 });
+const optCubeLarge = await getImage({ src: imgCubeLarge, width: 600 });
 ---
 
 <BaseLayout title={site.seo.siteTitle} description={site.seo.defaultDescription}>
@@ -170,26 +198,196 @@ const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 568 });
     <main class="sections">
       
       <!-- Section 01: Who We Are -->
-      <section id="who-we-are" class="page-section">
+      <section id="who-we-are" class="page-section section-who-we-are">
         <div class="mobile-only section-stepper">
           <Stepper steps={stepper} activeId="who-we-are" />
         </div>
-        <div class="reveal">
-          <p class="section-eyebrow">{homeData.whoWeAre.eyebrow}</p>
-          <h2>{homeData.whoWeAre.heading.plain}<br /><em>{homeData.whoWeAre.heading.accent}</em></h2>
-          <p class="placeholder-text">Placeholder content for Phase 2B</p>
+
+        <div class="who-we-are-layout">
+          <!-- Text Column -->
+          <div class="who-we-are-content reveal">
+            <Eyebrow text={whoWeAre.eyebrow} color="purple-soft" />
+            <SectionHeading plain={whoWeAre.heading.plain} accent={whoWeAre.heading.accent} />
+            <p class="who-we-are-body">{whoWeAre.body}</p>
+            <div class="who-we-are-action">
+              <TextLink href={whoWeAre.link.href} label={whoWeAre.link.label} color="purple-soft" />
+            </div>
+          </div>
+
+          <!-- Section 01 Artwork -->
+          <div class="who-we-are-art" aria-hidden="true">
+            <ArtLayer 
+              srcDesktop={optGradBlueTop.src} 
+              positionDesktop="top right"
+              sizeDesktop="contain"
+              blendMode="screen"
+              opacity={0.45}
+              drift="slow"
+              class="desktop-only who-art-beam"
+            />
+            <ArtLayer 
+              srcDesktop={optBgMiddle.src} 
+              srcMobile={optBgMiddle.src}
+              positionDesktop="bottom right"
+              sizeDesktop="contain"
+              positionMobile="center bottom"
+              sizeMobile="contain"
+              opacity={0.9}
+              mask="linear-gradient(to right, transparent, black 15%, black 85%, transparent)"
+              class="who-art-ridge"
+            />
+            <ArtLayer 
+              srcDesktop={optCube1.src} 
+              positionDesktop="75% 35%"
+              sizeDesktop="70px"
+              blendMode="screen"
+              opacity={0.85}
+              drift="slow"
+              class="desktop-only"
+            />
+            <ArtLayer 
+              srcDesktop={optGlow5.src} 
+              positionDesktop="75% 42%"
+              sizeDesktop="120px"
+              blendMode="screen"
+              opacity={0.6}
+              drift="slow"
+              class="desktop-only"
+            />
+            <ArtLayer 
+              srcDesktop={optCube2.src} 
+              positionDesktop="85% 55%"
+              sizeDesktop="50px"
+              blendMode="screen"
+              opacity={0.8}
+              drift="slow"
+              class="desktop-only"
+            />
+            <ArtLayer 
+              srcDesktop={optGlow6.src} 
+              positionDesktop="85% 60%"
+              sizeDesktop="100px"
+              blendMode="screen"
+              opacity={0.5}
+              drift="slow"
+              class="desktop-only"
+            />
+          </div>
         </div>
       </section>
 
       <!-- Section 02: What We Do -->
-      <section id="what-we-do" class="page-section">
+      <section id="what-we-do" class="page-section section-what-we-do">
         <div class="mobile-only section-stepper">
           <Stepper steps={stepper} activeId="what-we-do" />
         </div>
-        <div class="reveal">
-          <p class="section-eyebrow">{homeData.whatWeDo.eyebrow}</p>
-          <h2>{homeData.whatWeDo.heading}</h2>
-          <p class="placeholder-text">Placeholder content for Phase 2B</p>
+
+        <div class="what-we-do-container">
+          <!-- Section 02 Header -->
+          <div class="what-we-do-header reveal">
+            <div class="what-we-do-header-left">
+              <Eyebrow text={whatWeDo.eyebrow} color="magenta-soft" />
+              <SectionHeading heading={whatWeDo.heading} class="what-we-do-title" />
+            </div>
+            <div class="what-we-do-header-right">
+              <p class="what-we-do-intro">{whatWeDo.intro}</p>
+            </div>
+          </div>
+
+          <!-- Section 02 Columns / Cards -->
+          <div class="what-we-do-grid reveal">
+            {whatWeDo.items.map((item) => (
+              <div class="what-item">
+                <div class="icon-tile">
+                  <Icon name={item.icon} size={24} />
+                </div>
+                <h3 class="what-item-title">{item.title}</h3>
+                <p class="what-item-text">{item.text}</p>
+                {item.href && (
+                  <a href={item.href} class="mobile-only what-item-arrow" aria-label={`Learn more about ${item.title}`}>
+                    <Icon name="arrow-right" size={20} />
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+
+          <!-- Section 02 Artwork -->
+          <div class="what-we-do-art" aria-hidden="true">
+            <ArtLayer 
+              srcDesktop={optSectionOverlay.src} 
+              positionDesktop="top right"
+              sizeDesktop="100%"
+              opacity={0.3}
+              blendMode="screen"
+              class="desktop-only"
+            />
+            <ArtLayer 
+              srcDesktop={optWave2.src} 
+              positionDesktop="center right"
+              sizeDesktop="50%"
+              blendMode="screen"
+              opacity={0.65}
+              drift="slow"
+              class="desktop-only what-art-wave"
+            />
+            <ArtLayer 
+              srcDesktop={optWave3.src} 
+              positionDesktop="bottom right"
+              sizeDesktop="60%"
+              blendMode="screen"
+              opacity={0.5}
+              drift="slow"
+              class="desktop-only what-art-wave"
+            />
+            <ArtLayer 
+              srcDesktop={optCube1.src} 
+              positionDesktop="95% 30%"
+              sizeDesktop="60px"
+              blendMode="screen"
+              opacity={0.8}
+              drift="slow"
+              class="desktop-only"
+            />
+            <ArtLayer 
+              srcDesktop={optCube3.src} 
+              positionDesktop="92% 50%"
+              sizeDesktop="45px"
+              blendMode="screen"
+              opacity={0.75}
+              drift="slow"
+              class="desktop-only"
+            />
+            <ArtLayer 
+              srcDesktop={optGlow5.src} 
+              positionDesktop="95% 38%"
+              sizeDesktop="100px"
+              blendMode="screen"
+              opacity={0.5}
+              drift="slow"
+              class="desktop-only"
+            />
+
+            <!-- Mobile artwork: wave and large cube near bottom -->
+            <ArtLayer 
+              srcDesktop={optWave2.src}
+              srcMobile={optWave2.src}
+              positionMobile="bottom center"
+              sizeMobile="contain"
+              blendMode="screen"
+              opacity={0.7}
+              class="mobile-only mobile-what-wave"
+            />
+            <ArtLayer 
+              srcDesktop={optCubeLarge.src}
+              srcMobile={optCubeLarge.src}
+              positionMobile="bottom center"
+              sizeMobile="60%"
+              blendMode="screen"
+              opacity={0.85}
+              class="mobile-only mobile-what-cube"
+            />
+          </div>
         </div>
       </section>
 
@@ -444,6 +642,154 @@ const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 568 });
     padding: 80px 0;
   }
 
+  /* Section 01: Who We Are */
+  .section-who-we-are {
+    position: relative;
+    padding: 80px 0 100px;
+  }
+
+  .who-we-are-layout {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .who-we-are-content {
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+  }
+
+  .who-we-are-body {
+    margin-top: var(--space-5);
+    color: var(--color-text-muted);
+    font-size: var(--text-body);
+    line-height: 1.65;
+    max-width: 62ch;
+  }
+
+  .who-we-are-action {
+    margin-top: var(--space-6);
+  }
+
+  .who-we-are-art {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin-top: var(--space-6);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Section 02: What We Do */
+  .section-what-we-do {
+    position: relative;
+    padding: 80px 0 100px;
+  }
+
+  .what-we-do-container {
+    position: relative;
+    width: 100%;
+  }
+
+  .what-we-do-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-7);
+    position: relative;
+    z-index: 2;
+  }
+
+  .what-we-do-title {
+    max-width: 520px;
+  }
+
+  .what-we-do-intro {
+    font-size: var(--text-body);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+    max-width: 100%;
+  }
+
+  .what-we-do-grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    position: relative;
+    z-index: 2;
+  }
+
+  .what-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    position: relative;
+  }
+
+  .icon-tile {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-icon-tile);
+    background: var(--color-icon-tile);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    flex-shrink: 0;
+  }
+
+  .what-item-title {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .what-item-text {
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  .what-item-arrow {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-text);
+    margin-top: auto;
+    padding-top: var(--space-2);
+    transition: transform var(--ease-hover) var(--ease), color var(--ease-hover) var(--ease);
+  }
+
+  .what-item-arrow:hover {
+    transform: translateX(4px);
+    color: var(--color-purple-soft);
+  }
+
+  .what-item-arrow:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .what-we-do-art {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    margin-top: var(--space-6);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Temporary styles for unbuilt sections 03 & 04 */
   .section-eyebrow {
     font-size: var(--text-eyebrow);
     color: var(--color-magenta-soft);
@@ -460,14 +806,6 @@ const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 568 });
     width: 60px;
     height: 1px;
     background: var(--color-magenta-soft);
-  }
-
-  #who-we-are .section-eyebrow {
-    color: var(--color-purple-soft);
-  }
-  
-  #who-we-are .section-eyebrow::after {
-    background: var(--color-purple-soft);
   }
 
   h2 {
@@ -502,7 +840,9 @@ const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 568 });
     }
     
     /* Some elements are not flex */
-    .hero-art .desktop-only {
+    .hero-art .desktop-only,
+    .who-we-are-art .desktop-only,
+    .what-we-do-art .desktop-only {
       display: block;
     }
     
@@ -511,7 +851,7 @@ const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 568 });
     }
 
     .mobile-only {
-      display: none;
+      display: none !important;
     }
 
     .hero-content {
@@ -537,6 +877,85 @@ const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 568 });
     .scroll-indicator {
       right: 64px;
     }
+
+    /* Section 01 Desktop */
+    .section-who-we-are {
+      padding: 120px 0 140px;
+    }
+
+    .who-we-are-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 540px) 1fr;
+      align-items: center;
+      min-height: 480px;
+    }
+
+    .who-we-are-content {
+      max-width: 540px;
+    }
+
+    .who-we-are-art {
+      position: absolute;
+      top: -40px;
+      right: -80px;
+      bottom: -40px;
+      width: 60%;
+      height: auto;
+      margin-top: 0;
+    }
+
+    /* Section 02 Desktop */
+    .section-what-we-do {
+      padding: 120px 0 140px;
+    }
+
+    .what-we-do-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-8);
+      margin-bottom: var(--space-8);
+    }
+
+    .what-we-do-intro {
+      max-width: 380px;
+      padding-top: 36px;
+    }
+
+    .what-we-do-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .what-item {
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      border-right: 1px solid var(--color-border);
+      padding: 0 var(--space-6);
+      gap: var(--space-4);
+    }
+
+    .what-item:first-child {
+      padding-left: 0;
+    }
+
+    .what-item:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .what-we-do-art {
+      position: absolute;
+      top: 0;
+      right: -80px;
+      bottom: 0;
+      width: 45%;
+      height: 100%;
+      margin-top: 0;
+    }
   }
 
   @media (min-width: 768px) and (max-width: 1023px) {
@@ -551,5 +970,11 @@ const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 568 });
     .top-left { left: 40px; }
     .bottom-left { left: 40px; }
     .scroll-indicator { right: 40px; }
+
+    .what-we-do-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-5);
+    }
   }
 </style>

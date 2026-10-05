@@ -1,0 +1,77 @@
+---
+interface Props {
+  text: string;
+  color?: 'purple-soft' | 'magenta-soft' | 'magenta';
+  class?: string;
+}
+
+const {
+  text,
+  color = 'purple-soft',
+  class: className = '',
+} = Astro.props;
+---
+
+<div class:list={['section-eyebrow', `eyebrow--${color}`, className]}>
+  <span class="eyebrow-text">{text}</span>
+  <span class="eyebrow-line" aria-hidden="true"></span>
+</div>
+
+<style>
+  .section-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-4);
+    font-family: var(--font-sans);
+    font-size: var(--text-eyebrow);
+    line-height: 1;
+    margin-bottom: var(--space-4);
+  }
+
+  .eyebrow-text {
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .eyebrow--purple-soft {
+    color: var(--color-purple-soft);
+  }
+
+  .eyebrow--purple-soft .eyebrow-line {
+    background: var(--color-purple-soft);
+  }
+
+  .eyebrow--magenta-soft {
+    color: var(--color-magenta-soft);
+  }
+
+  .eyebrow--magenta-soft .eyebrow-text {
+    /* Home small eyebrows like "What we do" can be sentence case per design.md */
+    text-transform: none;
+    letter-spacing: normal;
+  }
+
+  .eyebrow--magenta-soft .eyebrow-line {
+    background: var(--color-magenta-soft);
+  }
+
+  .eyebrow--magenta {
+    color: var(--color-magenta);
+  }
+
+  .eyebrow--magenta .eyebrow-text {
+    letter-spacing: 0.18em;
+  }
+
+  .eyebrow--magenta .eyebrow-line {
+    background: var(--color-magenta);
+  }
+
+  .eyebrow-line {
+    display: inline-block;
+    width: 60px;
+    height: 1px;
+    opacity: 0.6;
+    flex-shrink: 0;
+  }
+</style>

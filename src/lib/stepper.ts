@@ -17,7 +17,7 @@ export function initStepper() {
     let minDistance = Infinity;
     const viewportCenter = window.innerHeight / 2;
 
-    sections.forEach((section) => {
+    for (const section of sections) {
       const rect = section.getBoundingClientRect();
       const sectionCenter = rect.top + rect.height / 2;
       const distance = Math.abs(viewportCenter - sectionCenter);
@@ -28,10 +28,10 @@ export function initStepper() {
         minDistance = distance;
         closestSection = section;
       }
-    });
+    }
 
     if (closestSection) {
-      const activeId = closestSection.id;
+      const activeId = (closestSection as HTMLElement).id;
       links.forEach((link) => {
         if (link.dataset.step === activeId) {
           link.classList.add('is-active');

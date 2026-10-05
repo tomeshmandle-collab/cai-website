@@ -195,4 +195,6 @@ Before launch: Lighthouse on the deployed URL, a real phone test, reduced-motion
 | 2026-10-05 | Phase 0 completed: Astro v5.4.2, @fontsource/figtree v5.3.0, @fontsource/newsreader v5.3.0 pinned; folder structure and assets positioned | Phase 0 setup and first deploy preparation |
 | 2026-10-05 | Phase 1A completed: tokens.css, base.css, utilities.css, Zod config, lib helpers, SVG placeholders | Design system foundation and content validation |
 | 2026-10-05 | Phase 1B completed: BaseLayout, Header with desktop nav pill & More dropdown, MobileMenu with focus trap, Footer with 4-column layout & mobile order, 12 blank pages, sitemap.xml, robots.txt | Layout shell, navigation, and blank pages |
+| 2026-10-05 | Phase 2A completed: ArtLayer component, Home hero with desktop & mobile artwork compositions, Stepper desktop sticky rail & compact in-section variant, reveal.ts | Home hero, artwork layers, stepper navigation |
+| 2026-10-05 | Phase 2B completed: Section 01 (Who we are) with community eyebrow, serif italic accent heading, right-side ridge artwork; Section 02 (What we do) with 4-column dividers on desktop and stacked cards with arrows on mobile; reusable Eyebrow, SectionHeading, TextLink, and Icon components | Section 01 & 02 implementations with responsive layouts and artwork |
 

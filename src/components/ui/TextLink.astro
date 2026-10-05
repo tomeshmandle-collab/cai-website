@@ -1,0 +1,73 @@
+---
+interface Props {
+  href?: string;
+  label: string;
+  color?: 'white' | 'purple-soft' | 'magenta';
+  class?: string;
+}
+
+const {
+  href,
+  label,
+  color = 'purple-soft',
+  class: className = '',
+} = Astro.props;
+---
+
+{href ? (
+  <a href={href} class:list={['text-link', `text-link--${color}`, className]}>
+    <span class="text-link-label">{label}</span>
+    <span class="text-link-arrow" aria-hidden="true">&rarr;</span>
+  </a>
+) : null}
+
+<style>
+  .text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-sans);
+    font-size: var(--text-body);
+    font-weight: 400;
+    text-decoration: none;
+    transition: color var(--ease-hover) var(--ease);
+  }
+
+  .text-link-label {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: text-decoration-thickness var(--ease-hover) var(--ease);
+  }
+
+  .text-link:hover .text-link-label {
+    text-decoration-thickness: 2px;
+  }
+
+  .text-link-arrow {
+    display: inline-block;
+    transition: transform var(--ease-hover) var(--ease);
+  }
+
+  .text-link:hover .text-link-arrow {
+    transform: translateX(3px);
+  }
+
+  .text-link:focus-visible {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .text-link--purple-soft {
+    color: var(--color-purple-soft);
+  }
+
+  .text-link--white {
+    color: var(--color-text);
+  }
+
+  .text-link--magenta {
+    color: var(--color-magenta);
+  }
+</style>

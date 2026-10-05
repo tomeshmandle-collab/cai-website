@@ -1,0 +1,52 @@
+---
+interface Props {
+  plain?: string;
+  accent?: string;
+  heading?: string;
+  as?: 'h2' | 'h3';
+  class?: string;
+}
+
+const {
+  plain,
+  accent,
+  heading,
+  as: Tag = 'h2',
+  class: className = '',
+} = Astro.props;
+---
+
+<Tag class:list={['section-heading', className]}>
+  {heading ? (
+    heading
+  ) : (
+    <>
+      {plain && <span class="heading-plain">{plain}</span>}
+      {plain && accent && <br />}
+      {accent && <em class="heading-accent">{accent}</em>}
+    </>
+  )}
+</Tag>
+
+<style>
+  .section-heading {
+    font-family: var(--font-sans);
+    font-size: var(--text-h2);
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .heading-plain {
+    display: inline-block;
+  }
+
+  .heading-accent {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-magenta);
+    font-size: var(--text-h2-serif);
+    font-weight: 400;
+  }
+</style>

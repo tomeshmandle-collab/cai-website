@@ -110,11 +110,11 @@ Acceptance
 Commit: `feat(home): hero, artwork layers and stepper`
 
 ### 2B — Who we are, What we do
-- [ ] Section 01 and Section 02 per `design.md` 4.2–4.3 with content from `home.json`; section artwork per `assets.md`.
-- [ ] What we do: four columns with dividers on desktop, stacked cards with arrows on mobile.
+- [x] Section 01 and Section 02 per `design.md` 4.2–4.3 with content from `home.json`; section artwork per `assets.md`.
+- [x] What we do: four columns with dividers on desktop, stacked cards with arrows on mobile.
 
 Acceptance
-- [ ] Text matches `content.md` exactly; artwork does not cover text.
+- [x] Text matches `content.md` exactly; artwork does not cover text.
 
 Commit: `feat(home): who we are and what we do sections`
 

@@ -16,7 +16,7 @@ const { steps, activeId, class: className = '' } = Astro.props;
 
 <nav class:list={['stepper', className]} aria-label="Section navigation">
   <ul class="stepper-list">
-    {steps.map((step, index) => {
+    {steps.map((step) => {
       const isActive = activeId === step.id;
       return (
         <li class="stepper-item">
