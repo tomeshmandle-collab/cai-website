@@ -25,6 +25,7 @@ const site = defineCollection({
       navigate: z.array(z.object({
         label: z.string(),
         href: z.string(),
+        srLabel: z.string().optional(),
       })),
       contactTitle: z.string(),
       email: z.string(),

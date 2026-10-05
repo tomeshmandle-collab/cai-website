@@ -40,7 +40,8 @@
       },
       {
         "label": "More",
-        "href": "/contact"
+        "href": "/contact",
+        "srLabel": "Contact options"
       }
     ],
     "contactTitle": "Get in Touch",
