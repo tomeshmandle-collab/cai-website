@@ -180,10 +180,10 @@ Commit: `feat(team): mobile pass and finalize phase 3` · Tag: `phase-3`
 ## Phase 4 — Quality
 
 ### 4A — Design comparison (review only, no edits)
-- [ ] Agent compares the running site with all four design images section by section and writes `docs/review-design.md`: each difference, severity, and the file to change.
+- [x] Agent compares the running site with all four design images section by section and writes `docs/review-design.md`: each difference, severity, and the file to change.
 
 ### 4B — Apply fixes
-- [ ] Fix every item marked "must" or "should" in the review; list what was skipped and why.
+- [x] Fix every item marked "must" or "should" in the review; list what was skipped and why.
 
 ### 4C — Accessibility and performance
 - [ ] Keyboard-only walkthrough; heading order; landmarks; alt text; contrast; focus visibility; reduced motion.

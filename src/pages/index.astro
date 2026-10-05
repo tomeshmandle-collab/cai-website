@@ -85,7 +85,7 @@ const optWave4 = await getImage({ src: imgWave4, width: 1000 });
         sizeDesktop="cover"
         positionMobile="bottom center"
         sizeMobile="cover"
-        mask="linear-gradient(to bottom, transparent, black 15%, black 90%, transparent)"
+        mask="linear-gradient(to bottom, transparent 0%, black 20%, black 85%, transparent 100%)"
       />
       <ArtLayer 
         srcDesktop={optWave1.src} 
@@ -181,7 +181,7 @@ const optWave4 = await getImage({ src: imgWave4, width: 1000 });
         <p class="eyebrow">{hero.eyebrow}</p>
         <h1 class="headline">
           {hero.headlineLine1}<br />
-          {hero.headlineLine2} <span class="accent">{hero.headlineAccent}</span>
+          <span class="headline-gradient">{hero.headlineLine2}</span> <span class="accent">{hero.headlineAccent}</span>
         </h1>
         <p class="subline">{hero.subline}</p>
         <a href={hero.cta.href} class="btn-primary">
@@ -577,8 +577,17 @@ const optWave4 = await getImage({ src: imgWave4, width: 1000 });
     word-break: break-word;
   }
 
+  .headline-gradient {
+    background: linear-gradient(180deg, #ffffff 20%, rgba(255, 255, 255, 0.65) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: inline-block;
+  }
+
   .headline .accent {
     color: var(--color-purple);
+    text-shadow: 0 0 24px rgba(165, 45, 245, 0.4);
   }
 
   .subline {
@@ -847,6 +856,7 @@ const optWave4 = await getImage({ src: imgWave4, width: 1000 });
     color: var(--color-text);
     margin-top: auto;
     padding-top: var(--space-2);
+    align-self: flex-end;
     transition: transform var(--ease-hover) var(--ease), color var(--ease-hover) var(--ease);
   }
 
@@ -928,7 +938,7 @@ const optWave4 = await getImage({ src: imgWave4, width: 1000 });
     left: 7px;
     top: 12px;
     bottom: 12px;
-    width: 1px;
+    width: 2px;
     background: var(--color-border-strong);
   }
 
@@ -1245,7 +1255,6 @@ const optWave4 = await getImage({ src: imgWave4, width: 1000 });
 
     .what-we-do-intro {
       max-width: 380px;
-      padding-top: 36px;
     }
 
     .what-we-do-grid {
