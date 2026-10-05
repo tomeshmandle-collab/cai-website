@@ -96,16 +96,16 @@ Commit: `feat: layout shell, navigation, footer and blank pages` · Tag: `phase-
 ## Phase 2 — Home page
 
 ### 2A — Hero, artwork layers, stepper
-- [ ] `ArtLayer` component (position, size, opacity, blend mode, mask, drift, breakpoint variants, `alt=""`).
-- [ ] Hero per `design.md` 4.1 and `assets.md` section 4 (desktop and mobile compositions).
-- [ ] Corner texts, eyebrow, headline with AI accent, subline, button scrolling to `#what-we-do`, scroll indicator.
-- [ ] `Stepper` component (desktop sticky rail in its own column; compact version below 1024) and `stepper.ts` (active step, click to scroll, hash update).
-- [ ] `reveal.ts`.
+- [x] `ArtLayer` component (position, size, opacity, blend mode, mask, drift, breakpoint variants, `alt=""`).
+- [x] Hero per `design.md` 4.1 and `assets.md` section 4 (desktop and mobile compositions).
+- [x] Corner texts, eyebrow, headline with AI accent, subline, button scrolling to `#what-we-do`, scroll indicator.
+- [x] `Stepper` component (desktop sticky rail in its own column; compact version below 1024) and `stepper.ts` (active step, click to scroll, hash update).
+- [x] `reveal.ts`.
 
 Acceptance
-- [ ] Hero looks like the design on desktop and mobile; no visible edges on any artwork piece.
-- [ ] Stepper highlights the right step while scrolling and never overlaps content.
-- [ ] Reduced-motion setting disables drift and reveal.
+- [x] Hero looks like the design on desktop and mobile; no visible edges on any artwork piece.
+- [x] Stepper highlights the right step while scrolling and never overlaps content.
+- [x] Reduced-motion setting disables drift and reveal.
 
 Commit: `feat(home): hero, artwork layers and stepper`
 

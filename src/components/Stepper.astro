@@ -1,0 +1,193 @@
+---
+interface Step {
+  id: string;
+  number: string;
+  label: string;
+}
+
+interface Props {
+  steps: Step[];
+  activeId?: string; // If provided, pre-highlights a specific step (useful for static mobile instances)
+  class?: string;
+}
+
+const { steps, activeId, class: className = '' } = Astro.props;
+---
+
+<nav class:list={['stepper', className]} aria-label="Section navigation">
+  <ul class="stepper-list">
+    {steps.map((step, index) => {
+      const isActive = activeId === step.id;
+      return (
+        <li class="stepper-item">
+          <a
+            href={`#${step.id}`}
+            class:list={['stepper-link', { 'is-active': isActive }]}
+            data-step={step.id}
+            aria-current={isActive ? 'step' : undefined}
+          >
+            <span class="stepper-node"></span>
+            <span class="stepper-number">{step.number}</span>
+            <span class="stepper-label">{step.label}</span>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</nav>
+
+<style>
+  .stepper {
+    --node-size: 10px;
+    --node-active-size: 12px;
+  }
+
+  .stepper-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+
+  .stepper-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--color-text-faint);
+    transition: color var(--ease);
+    outline: none;
+  }
+
+  .stepper-node {
+    display: block;
+    width: var(--node-size);
+    height: var(--node-size);
+    border-radius: 50%;
+    border: 1px solid var(--color-text-faint);
+    transition: all var(--ease);
+    background: transparent;
+    box-sizing: border-box;
+  }
+
+  .stepper-number {
+    font-size: var(--text-stepper);
+    font-weight: 500;
+  }
+
+  .stepper-label {
+    font-size: var(--text-stepper);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    position: relative;
+  }
+
+  /* Desktop layout: Vertical rail */
+  @media (min-width: 1024px) {
+    .stepper-list {
+      flex-direction: column;
+      gap: 32px;
+      position: relative;
+    }
+
+    /* The vertical rail line */
+    .stepper-list::before {
+      content: '';
+      position: absolute;
+      left: calc(var(--node-size) / 2);
+      top: 4px;
+      bottom: 4px;
+      width: 1px;
+      background: var(--color-border);
+      z-index: 0;
+      transform: translateX(-50%);
+    }
+
+    .stepper-item {
+      position: relative;
+      z-index: 1;
+    }
+
+    .stepper-link {
+      gap: 16px;
+    }
+
+    /* Active state */
+    .stepper-link.is-active,
+    .stepper-link:hover {
+      color: var(--color-text);
+    }
+
+    .stepper-link.is-active .stepper-node {
+      width: var(--node-active-size);
+      height: var(--node-active-size);
+      background: var(--color-text);
+      border-color: var(--color-text);
+      box-shadow: var(--glow-purple);
+      margin-left: -1px; /* Adjust for size difference to keep centered on rail */
+    }
+
+    .stepper-link.is-active .stepper-number {
+      color: var(--color-purple-soft);
+    }
+
+    .stepper-link.is-active .stepper-label::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 1px;
+      background: var(--color-purple-soft);
+      box-shadow: var(--glow-purple);
+    }
+  }
+
+  /* Mobile layout: Compact horizontal list */
+  @media (max-width: 1023px) {
+    .stepper-list {
+      flex-direction: row;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 8px; /* space for scrollbar */
+      scrollbar-width: none;
+    }
+    
+    .stepper-list::-webkit-scrollbar {
+      display: none;
+    }
+
+    .stepper-link {
+      gap: 8px;
+      white-space: nowrap;
+    }
+    
+    .stepper-node {
+      display: none; /* Hide node on mobile to match compact design */
+    }
+
+    .stepper-link.is-active {
+      color: var(--color-text);
+    }
+
+    .stepper-link.is-active .stepper-number {
+      color: var(--color-purple-soft);
+    }
+    
+    .stepper-link.is-active .stepper-label::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 100%;
+      height: 1px;
+      background: var(--color-purple-soft);
+    }
+  }
+
+  /* Focus visible */
+  .stepper-link:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 4px;
+    border-radius: 2px;
+  }
+</style>

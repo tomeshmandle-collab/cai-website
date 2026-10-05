@@ -1,29 +1,555 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { getSiteContent } from '../lib/content';
+import { getSiteContent, getHomeContent } from '../lib/content';
+import ArtLayer from '../components/ArtLayer.astro';
+import Stepper from '../components/Stepper.astro';
+import { getImage } from 'astro:assets';
+
+// Artwork imports
+import imgHeroDesktop from '../assets/art/02_hero_background.webp';
+import imgHeroMobile from '../assets/art/01a_background_top.webp';
+import imgWave1 from '../assets/art/09_wave_1.webp';
+import imgGlow3 from '../assets/art/10_glow_3.webp';
+import imgGlow4 from '../assets/art/10_glow_4.webp';
+import imgCube1 from '../assets/art/07_cube_small_1.webp';
+import imgCube2 from '../assets/art/07_cube_small_2.webp';
+import imgCube3 from '../assets/art/07_cube_small_3.webp';
+import imgGradBlueDark from '../assets/art/11a_gradient_blue_dark.webp';
 
 const site = await getSiteContent();
+const homeData = await getHomeContent();
+const { hero, stepper } = homeData;
+
+// Optimize images for hero
+const optHeroDesktop = await getImage({ src: imgHeroDesktop, width: 2032 });
+const optHeroMobile = await getImage({ src: imgHeroMobile, width: 1000 });
+const optWave1 = await getImage({ src: imgWave1, width: 1200 });
+const optGlow3 = await getImage({ src: imgGlow3, width: 300 });
+const optGlow4 = await getImage({ src: imgGlow4, width: 300 });
+const optCube1 = await getImage({ src: imgCube1, width: 300 });
+const optCube2 = await getImage({ src: imgCube2, width: 300 });
+const optCube3 = await getImage({ src: imgCube3, width: 300 });
+const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 568 });
 ---
 
 <BaseLayout title={site.seo.siteTitle} description={site.seo.defaultDescription}>
-  <div class="container temp-page-content">
-    <h1>{site.brand.name}</h1>
-    <p>{site.brand.tagline}</p>
+  <!-- Hero Section -->
+  <section class="hero">
+    <!-- Art Layers -->
+    <div class="hero-art">
+      <ArtLayer 
+        srcDesktop={optGradBlueDark.src} 
+        positionDesktop="top right"
+        sizeDesktop="80%"
+        opacity={0.3}
+        class="desktop-only"
+      />
+      <ArtLayer 
+        srcDesktop={optHeroDesktop.src} 
+        srcMobile={optHeroMobile.src}
+        positionDesktop="bottom center"
+        sizeDesktop="cover"
+        positionMobile="bottom center"
+        sizeMobile="cover"
+        mask="linear-gradient(to bottom, transparent, black 15%, black 90%, transparent)"
+      />
+      <ArtLayer 
+        srcDesktop={optWave1.src} 
+        positionDesktop="bottom left"
+        sizeDesktop="100%"
+        blendMode="screen"
+        opacity={0.7}
+        drift="slow"
+        class="desktop-only wave-layer"
+      />
+      <ArtLayer 
+        srcDesktop={optGlow3.src} 
+        positionDesktop="center right"
+        positionMobile="center"
+        sizeDesktop="40%"
+        sizeMobile="80%"
+        blendMode="screen"
+        opacity={0.6}
+        drift="slow"
+        class="highlight-glow"
+      />
+      <ArtLayer 
+        srcDesktop={optGlow4.src} 
+        positionDesktop="bottom right"
+        sizeDesktop="30%"
+        blendMode="screen"
+        opacity={0.5}
+        drift="slow"
+        class="desktop-only"
+      />
+      <ArtLayer 
+        srcDesktop={optCube1.src} 
+        positionDesktop="65% 40%"
+        sizeDesktop="120px"
+        blendMode="screen"
+        drift="slow"
+        class="desktop-only"
+      />
+      <ArtLayer 
+        srcDesktop={optCube2.src} 
+        positionDesktop="75% 60%"
+        sizeDesktop="80px"
+        blendMode="screen"
+        drift="slow"
+        class="desktop-only"
+      />
+      <ArtLayer 
+        srcDesktop={optCube3.src} 
+        positionDesktop="85% 30%"
+        sizeDesktop="60px"
+        blendMode="screen"
+        drift="slow"
+        class="desktop-only"
+      />
+    </div>
+
+    <!-- Hero Content -->
+    <div class="hero-content">
+      <!-- Top Left Corner Text -->
+      <div class="corner-text top-left reveal">
+        <div class="bar"></div>
+        <p>{hero.cornerTopLeft[0]}<br />{hero.cornerTopLeft[1]}</p>
+      </div>
+
+      <!-- Bottom Left Corner Text -->
+      <div class="corner-text bottom-left reveal">
+        <div class="bar"></div>
+        <p>
+          {hero.cornerBottomLeft.map((line: string) => (
+            <>{line}<br /></>
+          ))}
+        </p>
+      </div>
+
+      <!-- Right Corner Text (Desktop Only) -->
+      <div class="corner-text right-side desktop-only reveal">
+        <div class="bar"></div>
+        <p>
+          {hero.cornerRight.map((line: string) => (
+            <>{line}<br /></>
+          ))}
+        </p>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="scroll-indicator reveal">
+        <div class="scroll-line"></div>
+        <span class="scroll-label">{hero.scrollLabel}</span>
+      </div>
+
+      <!-- Main Center Block -->
+      <div class="hero-center reveal">
+        <p class="eyebrow">{hero.eyebrow}</p>
+        <h1 class="headline">
+          {hero.headlineLine1}<br />
+          {hero.headlineLine2} <span class="accent">{hero.headlineAccent}</span>
+        </h1>
+        <p class="subline">{hero.subline}</p>
+        <a href={hero.cta.href} class="btn-primary">
+          {hero.cta.label} <span class="arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Page Content -->
+  <div class="page-body">
+    <!-- Desktop Stepper Column -->
+    <aside class="stepper-column desktop-only">
+      <div class="stepper-sticky">
+        <Stepper steps={stepper} />
+      </div>
+    </aside>
+
+    <!-- Sections Area -->
+    <main class="sections">
+      
+      <!-- Section 01: Who We Are -->
+      <section id="who-we-are" class="page-section">
+        <div class="mobile-only section-stepper">
+          <Stepper steps={stepper} activeId="who-we-are" />
+        </div>
+        <div class="reveal">
+          <p class="section-eyebrow">{homeData.whoWeAre.eyebrow}</p>
+          <h2>{homeData.whoWeAre.heading.plain}<br /><em>{homeData.whoWeAre.heading.accent}</em></h2>
+          <p class="placeholder-text">Placeholder content for Phase 2B</p>
+        </div>
+      </section>
+
+      <!-- Section 02: What We Do -->
+      <section id="what-we-do" class="page-section">
+        <div class="mobile-only section-stepper">
+          <Stepper steps={stepper} activeId="what-we-do" />
+        </div>
+        <div class="reveal">
+          <p class="section-eyebrow">{homeData.whatWeDo.eyebrow}</p>
+          <h2>{homeData.whatWeDo.heading}</h2>
+          <p class="placeholder-text">Placeholder content for Phase 2B</p>
+        </div>
+      </section>
+
+      <!-- Section 03: Our Projects -->
+      <section id="our-projects" class="page-section">
+        <div class="mobile-only section-stepper">
+          <Stepper steps={stepper} activeId="our-projects" />
+        </div>
+        <div class="reveal">
+          <p class="section-eyebrow">{homeData.projects.eyebrow}</p>
+          <h2>{homeData.projects.heading}</h2>
+          <p class="placeholder-text">Placeholder content for Phase 2C</p>
+        </div>
+      </section>
+
+      <!-- Section 04: Ways to Engage -->
+      <section id="ways-to-engage" class="page-section">
+        <div class="mobile-only section-stepper">
+          <Stepper steps={stepper} activeId="ways-to-engage" />
+        </div>
+        <div class="reveal">
+          <p class="section-eyebrow">{homeData.waysToEngage.eyebrow}</p>
+          <h2>{homeData.waysToEngage.heading}</h2>
+          <p class="placeholder-text">Placeholder content for Phase 2C</p>
+        </div>
+      </section>
+
+    </main>
   </div>
 </BaseLayout>
 
+<script>
+  import { initStepper } from '../lib/stepper';
+  import { initReveal } from '../lib/reveal';
+
+  // Initialize scripts on the client
+  document.addEventListener('DOMContentLoaded', () => {
+    initStepper();
+    initReveal();
+  });
+</script>
+
 <style>
-  .temp-page-content {
-    padding-block: var(--space-8);
+  /* Hero Styles */
+  .hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    min-height: 100dvh;
+    min-height: max(640px, 100vh);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
-  h1 {
-    font-size: var(--text-h2);
-    margin-bottom: var(--space-3);
+  .hero-art {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
   }
 
-  p {
+  /* Fine-tuning some art positions */
+  .wave-layer {
+    transform: translateY(15%);
+  }
+
+  .highlight-glow {
+    transform: translate(10%, -10%);
+  }
+
+  .hero-content {
+    position: relative;
+    width: 100%;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 100vh;
+    height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 10;
+  }
+
+  /* Center Block */
+  .hero-center {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -10vh; /* Shift up slightly */
+  }
+
+  .eyebrow {
+    font-size: var(--text-eyebrow);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 24px;
+  }
+
+  .headline {
+    font-family: var(--font-sans);
+    font-size: var(--text-hero);
+    font-weight: 300;
+    line-height: 1.02;
+    text-transform: uppercase;
+    margin: 0 0 24px 0;
+  }
+
+  .headline .accent {
+    color: var(--color-purple);
+  }
+
+  .subline {
     font-size: var(--text-lead);
     color: var(--color-text-muted);
+    margin-bottom: 40px;
+    max-width: 500px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-button-bg);
+    color: var(--color-button-text);
+    padding: 0 22px;
+    height: 48px;
+    border-radius: var(--radius-pill);
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: var(--shadow-button);
+    transition: all var(--ease);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(255,255,255,0.2);
+  }
+
+  .btn-primary:active {
+    transform: scale(0.98);
+  }
+
+  .btn-primary:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 3px;
+  }
+
+  .arrow {
+    transition: transform var(--ease);
+  }
+
+  .btn-primary:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  /* Corner Texts */
+  .corner-text {
+    position: absolute;
+    font-size: var(--text-corner);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-faint);
+    display: flex;
+    gap: 16px;
+    line-height: 1.5;
+  }
+
+  .corner-text p {
+    margin: 0;
+  }
+
+  .bar {
+    width: 1px;
+    background: var(--color-text-faint);
+  }
+
+  .top-left {
+    top: max(120px, 15vh);
+    left: 24px;
+  }
+
+  .bottom-left {
+    bottom: 48px;
+    left: 24px;
+  }
+
+  .right-side {
+    top: 50%;
+    right: 24px;
+    transform: translateY(-50%);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 48px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, var(--color-text-faint), transparent);
+  }
+
+  .scroll-label {
+    font-size: var(--text-corner);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--color-text-faint);
+    writing-mode: vertical-rl;
+  }
+
+  /* Layout below hero */
+  .page-body {
+    position: relative;
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    gap: 64px;
+  }
+
+  .stepper-column {
+    width: 200px;
+    flex-shrink: 0;
+    padding-top: 120px;
+  }
+
+  .stepper-sticky {
+    position: sticky;
+    top: 120px; /* Offset from sticky header */
+  }
+
+  .sections {
+    flex: 1;
+    min-width: 0;
+    padding-top: 80px;
+    padding-bottom: 120px;
+  }
+
+  .page-section {
+    min-height: 70vh;
+    padding: 80px 0;
+  }
+
+  .section-eyebrow {
+    font-size: var(--text-eyebrow);
+    color: var(--color-magenta-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .section-eyebrow::after {
+    content: '';
+    width: 60px;
+    height: 1px;
+    background: var(--color-magenta-soft);
+  }
+
+  #who-we-are .section-eyebrow {
+    color: var(--color-purple-soft);
+  }
+  
+  #who-we-are .section-eyebrow::after {
+    background: var(--color-purple-soft);
+  }
+
+  h2 {
+    font-size: var(--text-h2);
+    font-weight: 400;
+    line-height: 1.1;
+    margin-bottom: 32px;
+  }
+
+  em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--color-magenta);
+    font-size: var(--text-h2-serif);
+  }
+
+  .placeholder-text {
+    color: var(--color-text-muted);
+  }
+
+  .section-stepper {
+    margin-bottom: 40px;
+  }
+
+  .desktop-only {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .desktop-only {
+      display: flex;
+    }
+    
+    /* Some elements are not flex */
+    .hero-art .desktop-only {
+      display: block;
+    }
+    
+    aside.desktop-only {
+      display: block;
+    }
+
+    .mobile-only {
+      display: none;
+    }
+
+    .hero-content {
+      padding: 0 64px;
+    }
+    
+    .page-body {
+      padding: 0 64px;
+    }
+
+    .top-left {
+      left: 64px;
+    }
+
+    .bottom-left {
+      left: 64px;
+    }
+
+    .right-side {
+      right: 64px;
+    }
+
+    .scroll-indicator {
+      right: 64px;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .hero-content {
+      padding: 0 40px;
+    }
+    
+    .page-body {
+      padding: 0 40px;
+    }
+    
+    .top-left { left: 40px; }
+    .bottom-left { left: 40px; }
+    .scroll-indicator { right: 40px; }
   }
 </style>

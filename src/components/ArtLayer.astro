@@ -1,0 +1,110 @@
+---
+interface Props {
+  srcDesktop: string;
+  srcMobile?: string;
+  alt?: string;
+  positionDesktop?: string;
+  sizeDesktop?: string;
+  positionMobile?: string;
+  sizeMobile?: string;
+  opacity?: number;
+  blendMode?: 'normal' | 'screen';
+  mask?: string;
+  drift?: 'slow' | 'none';
+  class?: string;
+}
+
+const {
+  srcDesktop,
+  srcMobile,
+  alt = '',
+  positionDesktop = 'center',
+  sizeDesktop = 'contain',
+  positionMobile = positionDesktop,
+  sizeMobile = sizeDesktop,
+  opacity = 1,
+  blendMode = 'normal',
+  mask,
+  drift = 'none',
+  class: className = '',
+} = Astro.props;
+
+// Determine if we need `<picture>` for mobile art direction
+const usePicture = !!srcMobile;
+---
+
+<div 
+  class:list={['art-layer', className, drift === 'slow' && 'art-drift']} 
+  aria-hidden="true"
+  style={`
+    --art-opacity: ${opacity};
+    --art-blend: ${blendMode};
+    --art-mask: ${mask || 'none'};
+    --art-pos-d: ${positionDesktop};
+    --art-size-d: ${sizeDesktop};
+    --art-pos-m: ${positionMobile};
+    --art-size-m: ${sizeMobile};
+  `}
+>
+  {usePicture ? (
+    <picture>
+      <source media="(max-width: 767px)" srcset={srcMobile} />
+      <img src={srcDesktop} alt={alt} />
+    </picture>
+  ) : (
+    <img src={srcDesktop} alt={alt} />
+  )}
+</div>
+
+<style>
+  .art-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+    opacity: var(--art-opacity);
+    mix-blend-mode: var(--art-blend);
+    -webkit-mask-image: var(--art-mask);
+    mask-image: var(--art-mask);
+  }
+
+  .art-layer img {
+    width: 100%;
+    height: 100%;
+    object-fit: var(--art-size-m);
+    object-position: var(--art-pos-m);
+  }
+
+  @media (min-width: 768px) {
+    .art-layer img {
+      object-fit: var(--art-size-d);
+      object-position: var(--art-pos-d);
+    }
+  }
+
+  /* Ambient Drift Animation */
+  .art-drift img {
+    animation: drift 30s ease-in-out infinite alternate;
+  }
+
+  @keyframes drift {
+    0% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    100% {
+      transform: translate3d(1%, -1%, 0) scale(1.02);
+    }
+  }
+
+  /* Respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .art-drift img {
+      animation: none !important;
+      transform: none !important;
+    }
+  }
+</style>
