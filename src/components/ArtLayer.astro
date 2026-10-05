@@ -72,6 +72,19 @@ const usePicture = !!srcMobile;
     mask-image: var(--art-mask);
   }
 
+  .art-layer.desktop-only {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .art-layer.desktop-only {
+      display: block;
+    }
+    .art-layer.mobile-only {
+      display: none !important;
+    }
+  }
+
   .art-layer img {
     width: 100%;
     height: 100%;

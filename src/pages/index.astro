@@ -23,14 +23,6 @@ import imgGradBlueDark from '../assets/art/11a_gradient_blue_dark.webp';
 // Artwork imports - Section 01 (Who we are)
 import imgBgMiddle from '../assets/art/01b_background_middle.webp';
 import imgGradBlueTop from '../assets/art/11d_gradient_blue_top.webp';
-import imgGlow5 from '../assets/art/10_glow_5.webp';
-import imgGlow6 from '../assets/art/10_glow_6.webp';
-
-// Artwork imports - Section 02 (What we do)
-import imgWave2 from '../assets/art/09_wave_2.webp';
-import imgWave3 from '../assets/art/09_wave_3.webp';
-import imgSectionOverlay from '../assets/art/03_section_overlay.webp';
-import imgCubeLarge from '../assets/art/05_cube_large.webp';
 
 const site = await getSiteContent();
 const homeData = await getHomeContent();
@@ -48,16 +40,8 @@ const optCube3 = await getImage({ src: imgCube3, width: 300 });
 const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 568 });
 
 // Optimize images for Section 01
-const optBgMiddle = await getImage({ src: imgBgMiddle, width: 1400 });
+const optBgMiddle = await getImage({ src: imgBgMiddle, width: 1200 });
 const optGradBlueTop = await getImage({ src: imgGradBlueTop, width: 600 });
-const optGlow5 = await getImage({ src: imgGlow5, width: 300 });
-const optGlow6 = await getImage({ src: imgGlow6, width: 300 });
-
-// Optimize images for Section 02
-const optWave2 = await getImage({ src: imgWave2, width: 900 });
-const optWave3 = await getImage({ src: imgWave3, width: 900 });
-const optSectionOverlay = await getImage({ src: imgSectionOverlay, width: 1400 });
-const optCubeLarge = await getImage({ src: imgCubeLarge, width: 600 });
 ---
 
 <BaseLayout title={site.seo.siteTitle} description={site.seo.defaultDescription}>
@@ -221,56 +205,23 @@ const optCubeLarge = await getImage({ src: imgCubeLarge, width: 600 });
               positionDesktop="top right"
               sizeDesktop="contain"
               blendMode="screen"
-              opacity={0.45}
+              opacity={0.35}
               drift="slow"
+              mask="radial-gradient(ellipse at 80% 20%, black 30%, transparent 80%)"
               class="desktop-only who-art-beam"
             />
             <ArtLayer 
               srcDesktop={optBgMiddle.src} 
               srcMobile={optBgMiddle.src}
-              positionDesktop="bottom right"
+              positionDesktop="center right"
               sizeDesktop="contain"
               positionMobile="center bottom"
               sizeMobile="contain"
-              opacity={0.9}
-              mask="linear-gradient(to right, transparent, black 15%, black 85%, transparent)"
+              blendMode="screen"
+              opacity={0.88}
+              drift="slow"
+              mask="radial-gradient(ellipse 85% 85% at 65% 50%, black 40%, transparent 95%)"
               class="who-art-ridge"
-            />
-            <ArtLayer 
-              srcDesktop={optCube1.src} 
-              positionDesktop="75% 35%"
-              sizeDesktop="70px"
-              blendMode="screen"
-              opacity={0.85}
-              drift="slow"
-              class="desktop-only"
-            />
-            <ArtLayer 
-              srcDesktop={optGlow5.src} 
-              positionDesktop="75% 42%"
-              sizeDesktop="120px"
-              blendMode="screen"
-              opacity={0.6}
-              drift="slow"
-              class="desktop-only"
-            />
-            <ArtLayer 
-              srcDesktop={optCube2.src} 
-              positionDesktop="85% 55%"
-              sizeDesktop="50px"
-              blendMode="screen"
-              opacity={0.8}
-              drift="slow"
-              class="desktop-only"
-            />
-            <ArtLayer 
-              srcDesktop={optGlow6.src} 
-              positionDesktop="85% 60%"
-              sizeDesktop="100px"
-              blendMode="screen"
-              opacity={0.5}
-              drift="slow"
-              class="desktop-only"
             />
           </div>
         </div>
@@ -310,83 +261,6 @@ const optCubeLarge = await getImage({ src: imgCubeLarge, width: 600 });
                 )}
               </div>
             ))}
-          </div>
-
-          <!-- Section 02 Artwork -->
-          <div class="what-we-do-art" aria-hidden="true">
-            <ArtLayer 
-              srcDesktop={optSectionOverlay.src} 
-              positionDesktop="top right"
-              sizeDesktop="100%"
-              opacity={0.3}
-              blendMode="screen"
-              class="desktop-only"
-            />
-            <ArtLayer 
-              srcDesktop={optWave2.src} 
-              positionDesktop="center right"
-              sizeDesktop="50%"
-              blendMode="screen"
-              opacity={0.65}
-              drift="slow"
-              class="desktop-only what-art-wave"
-            />
-            <ArtLayer 
-              srcDesktop={optWave3.src} 
-              positionDesktop="bottom right"
-              sizeDesktop="60%"
-              blendMode="screen"
-              opacity={0.5}
-              drift="slow"
-              class="desktop-only what-art-wave"
-            />
-            <ArtLayer 
-              srcDesktop={optCube1.src} 
-              positionDesktop="95% 30%"
-              sizeDesktop="60px"
-              blendMode="screen"
-              opacity={0.8}
-              drift="slow"
-              class="desktop-only"
-            />
-            <ArtLayer 
-              srcDesktop={optCube3.src} 
-              positionDesktop="92% 50%"
-              sizeDesktop="45px"
-              blendMode="screen"
-              opacity={0.75}
-              drift="slow"
-              class="desktop-only"
-            />
-            <ArtLayer 
-              srcDesktop={optGlow5.src} 
-              positionDesktop="95% 38%"
-              sizeDesktop="100px"
-              blendMode="screen"
-              opacity={0.5}
-              drift="slow"
-              class="desktop-only"
-            />
-
-            <!-- Mobile artwork: wave and large cube near bottom -->
-            <ArtLayer 
-              srcDesktop={optWave2.src}
-              srcMobile={optWave2.src}
-              positionMobile="bottom center"
-              sizeMobile="contain"
-              blendMode="screen"
-              opacity={0.7}
-              class="mobile-only mobile-what-wave"
-            />
-            <ArtLayer 
-              srcDesktop={optCubeLarge.src}
-              srcMobile={optCubeLarge.src}
-              positionMobile="bottom center"
-              sizeMobile="60%"
-              blendMode="screen"
-              opacity={0.85}
-              class="mobile-only mobile-what-cube"
-            />
           </div>
         </div>
       </section>
@@ -675,8 +549,9 @@ const optCubeLarge = await getImage({ src: imgCubeLarge, width: 600 });
   .who-we-are-art {
     position: relative;
     width: 100%;
-    height: 300px;
-    margin-top: var(--space-6);
+    max-width: 360px;
+    height: 240px;
+    margin: var(--space-6) auto 0;
     pointer-events: none;
     z-index: 1;
   }
@@ -780,15 +655,6 @@ const optCubeLarge = await getImage({ src: imgCubeLarge, width: 600 });
     border-radius: 2px;
   }
 
-  .what-we-do-art {
-    position: relative;
-    width: 100%;
-    height: 320px;
-    margin-top: var(--space-6);
-    pointer-events: none;
-    z-index: 1;
-  }
-
   /* Temporary styles for unbuilt sections 03 & 04 */
   .section-eyebrow {
     font-size: var(--text-eyebrow);
@@ -841,8 +707,7 @@ const optCubeLarge = await getImage({ src: imgCubeLarge, width: 600 });
     
     /* Some elements are not flex */
     .hero-art .desktop-only,
-    .who-we-are-art .desktop-only,
-    .what-we-do-art .desktop-only {
+    .who-we-are-art .desktop-only {
       display: block;
     }
     
@@ -878,33 +743,33 @@ const optCubeLarge = await getImage({ src: imgCubeLarge, width: 600 });
       right: 64px;
     }
 
-    /* Section 01 Desktop */
+    /* Section 01 Desktop: 2-column layout preventing any text overlap */
     .section-who-we-are {
       padding: 120px 0 140px;
     }
 
     .who-we-are-layout {
       display: grid;
-      grid-template-columns: minmax(0, 540px) 1fr;
+      grid-template-columns: minmax(0, 520px) minmax(0, 440px);
+      justify-content: space-between;
       align-items: center;
-      min-height: 480px;
+      gap: var(--space-8);
+      min-height: 440px;
     }
 
     .who-we-are-content {
-      max-width: 540px;
+      max-width: 520px;
     }
 
     .who-we-are-art {
-      position: absolute;
-      top: -40px;
-      right: -80px;
-      bottom: -40px;
-      width: 60%;
-      height: auto;
-      margin-top: 0;
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      height: 380px;
+      margin: 0 0 0 auto;
     }
 
-    /* Section 02 Desktop */
+    /* Section 02 Desktop: clean dark background */
     .section-what-we-do {
       padding: 120px 0 140px;
     }
@@ -945,16 +810,6 @@ const optCubeLarge = await getImage({ src: imgCubeLarge, width: 600 });
     .what-item:last-child {
       border-right: none;
       padding-right: 0;
-    }
-
-    .what-we-do-art {
-      position: absolute;
-      top: 0;
-      right: -80px;
-      bottom: 0;
-      width: 45%;
-      height: 100%;
-      margin-top: 0;
     }
   }
 
