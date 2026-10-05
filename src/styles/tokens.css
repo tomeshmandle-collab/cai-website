@@ -1,0 +1,84 @@
+/* src/styles/tokens.css */
+:root {
+  /* Color */
+  --color-bg: #05060a;
+  --color-bg-deep: #000000;
+  --color-surface: rgba(255, 255, 255, 0.035);
+  --color-surface-hover: rgba(255, 255, 255, 0.06);
+  --color-border: rgba(255, 255, 255, 0.10);
+  --color-border-strong: rgba(255, 255, 255, 0.22);
+  --color-text: #ffffff;
+  --color-text-muted: rgba(255, 255, 255, 0.68);
+  --color-text-faint: rgba(255, 255, 255, 0.48);
+  --color-purple: #a52df5;
+  --color-purple-soft: #a65be0;
+  --color-magenta: #e040d8;
+  --color-magenta-soft: #c957c4;
+  --color-button-bg: #ffffff;
+  --color-button-text: #14122b;
+  --color-icon-tile: rgba(120, 70, 220, 0.22);
+
+  /* Typography */
+  --font-sans: 'Figtree', system-ui, sans-serif;
+  --font-serif: 'Newsreader', Georgia, serif;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 72px;
+  --space-9: 112px;
+
+  /* Container */
+  --container-max: 1240px;
+  --container-px: 24px; /* mobile padding */
+
+  /* Radii */
+  --radius-pill: 999px;
+  --radius-card: 16px;
+  --radius-icon-tile: 12px;
+
+  /* Depth & Motion */
+  --shadow-button: 0 8px 30px rgba(255, 255, 255, 0.12);
+  --glow-purple: 0 0 24px rgba(165, 45, 245, 0.55);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-hover: 180ms;
+  --ease-reveal: 700ms;
+
+  /* Type Scale: Mobile First */
+  --text-hero: clamp(44px, 11vw, 52px);
+  --text-h2: clamp(30px, 8vw, 34px);
+  --text-h2-serif: clamp(32px, 8.5vw, 36px);
+  --text-lead: 16px;
+  --text-body: 14.5px;
+  --text-small: 13px;
+  --text-eyebrow: 12px;
+  --text-corner: 11px;
+  --text-stepper-num: 15px;
+  --text-stepper: 13px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --container-px: 40px;
+    --text-body: 15.5px;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --container-px: 64px;
+    --text-hero: clamp(48px, 6vw, 88px);
+    --text-h2: clamp(32px, 3.4vw, 48px);
+    --text-h2-serif: clamp(34px, 3.6vw, 52px);
+    --text-lead: 17.5px;
+    --text-body: 16px;
+    --text-small: 13.5px;
+    --text-eyebrow: 12.5px;
+    --text-corner: 11.5px;
+  }
+}

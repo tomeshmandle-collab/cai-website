@@ -1,0 +1,149 @@
+{
+  "hero": {
+    "eyebrow": "CENTRE FOR AI",
+    "headlineLine1": "DISCOVER",
+    "headlineLine2": "WITH",
+    "headlineAccent": "AI",
+    "subline": "Where mind leads & AI assists",
+    "cta": {
+      "label": "See it in action",
+      "href": "#what-we-do"
+    },
+    "cornerTopLeft": [
+      "NEURAL NETWORK",
+      "FOR A BRIGHTER TOMORROW"
+    ],
+    "cornerBottomLeft": [
+      "PEOPLE",
+      "IDEAS",
+      "INTELLIGENCE",
+      "FOR A BRIGHTER TOMORROW"
+    ],
+    "cornerRight": [
+      "INTELLIGENCE",
+      "PEOPLE",
+      "POSSIBILITIES"
+    ],
+    "scrollLabel": "Scroll"
+  },
+  "stepper": [
+    {
+      "id": "who-we-are",
+      "number": "01",
+      "label": "WHO WE ARE"
+    },
+    {
+      "id": "what-we-do",
+      "number": "02",
+      "label": "WHAT WE DO"
+    },
+    {
+      "id": "our-projects",
+      "number": "03",
+      "label": "OUR PROJECTS"
+    },
+    {
+      "id": "ways-to-engage",
+      "number": "04",
+      "label": "WAYS TO ENGAGE"
+    }
+  ],
+  "whoWeAre": {
+    "eyebrow": "COMMUNITY FIRST",
+    "heading": {
+      "plain": "Centre for",
+      "accent": "Artificial Intelligence"
+    },
+    "body": "The Centre for Artificial Intelligence, Kirori Mal College, is Delhi University's first AI-based learning and innovation ecosystem — dedicated to making artificial intelligence accessible to every curious mind. In our first official year, we're bringing students and enthusiasts from across Delhi University together to learn, build, and explore AI without barriers. CAI is more than a centre — it's a community for anyone who wants to understand the technology shaping tomorrow.",
+    "link": {
+      "label": "Explore Projects",
+      "href": "/projects"
+    }
+  },
+  "whatWeDo": {
+    "eyebrow": "What we do",
+    "heading": "Four ways we bring AI within reach.",
+    "intro": "From structured research to open speaker sessions — every track is built to move a curious student from first exposure to real capability.",
+    "items": [
+      {
+        "title": "Research",
+        "icon": "book-open",
+        "href": "/projects",
+        "text": "Faculty-guided exploration into applied AI, published and presented within the college and beyond."
+      },
+      {
+        "title": "Technical Projects",
+        "icon": "code-xml",
+        "href": "/projects",
+        "text": "Student-built tools and systems — the centre's strongest evidence of what members can actually do."
+      },
+      {
+        "title": "Workshops & Outreach",
+        "icon": "users",
+        "href": "/events",
+        "text": "Hands-on sessions and speaker talks that take AI from theory to something you've actually used."
+      },
+      {
+        "title": "Courses",
+        "icon": "graduation-cap",
+        "href": "/join",
+        "text": "Free, exclusive NASSCOM and IBM-backed courses available only to CAI members."
+      }
+    ]
+  },
+  "projects": {
+    "eyebrow": "Featured projects",
+    "heading": "Concrete work, not slideware.",
+    "intro": "From research prototypes to real-world tools, our projects turn curiosity, creativity, and drive to use AI for meaningful change.",
+    "link": {
+      "label": "Explore projects",
+      "href": "/projects"
+    },
+    "statusLabels": {
+      "active": "Active",
+      "completed": "Completed",
+      "idea": "Idea stage"
+    },
+    "items": [],
+    "emptyState": {
+      "badge": "Launching soon",
+      "title": "Our first projects are on the way.",
+      "text": "Check back soon."
+    }
+  },
+  "waysToEngage": {
+    "eyebrow": "Ways to engage",
+    "heading": "However you want in, there's a door.",
+    "intro": "Join our community, contribute to our projects, or attend our next event.",
+    "cards": [
+      {
+        "title": "Join CAI",
+        "icon": "user",
+        "href": "/join",
+        "linkLabel": "Apply now",
+        "text": "Become a member and get free access to NASSCOM & IBM courses."
+      },
+      {
+        "title": "Attend an Event",
+        "icon": "calendar",
+        "href": "/events",
+        "linkLabel": "See events",
+        "text": "Sit in on our next workshop or speaker session."
+      },
+      {
+        "title": "Submit an Idea",
+        "icon": "lightbulb",
+        "href": "/idea-box",
+        "linkLabel": "Open Idea Box",
+        "text": "Pitch an AI project through the Idea Box for review."
+      },
+      {
+        "title": "Collaborate",
+        "icon": "handshake",
+        "href": "/collaborate",
+        "linkLabel": "Start a proposal",
+        "text": "Propose a partnership as a society, researcher, or company."
+      }
+    ]
+  }
+}
