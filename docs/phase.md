@@ -119,12 +119,12 @@ Acceptance
 Commit: `feat(home): who we are and what we do sections`
 
 ### 2C — Projects, Ways to engage
-- [ ] Projects timeline with the "Launching soon" state, and rendering of real items when `items` is not empty (test with one sample item, then remove it).
-- [ ] Ways to engage: four cards with working links.
+- [x] Projects timeline with the "Launching soon" state, and rendering of real items when `items` is not empty (test with one sample item, then remove it).
+- [x] Ways to engage: four cards with working links.
 
 Acceptance
-- [ ] Section shows "Launching soon" now; adding a sample item in `home.json` switches it automatically; remove the sample afterwards.
-- [ ] All card links go to existing pages.
+- [x] Section shows "Launching soon" now; adding a sample item in `home.json` switches it automatically; remove the sample afterwards.
+- [x] All card links go to existing pages.
 
 Commit: `feat(home): projects timeline and ways to engage`
 

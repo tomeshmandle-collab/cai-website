@@ -24,9 +24,17 @@ import imgGradBlueDark from '../assets/art/11a_gradient_blue_dark.webp';
 import imgBgMiddle from '../assets/art/01b_background_middle.webp';
 import imgGradBlueTop from '../assets/art/11d_gradient_blue_top.webp';
 
+// Artwork imports - Section 03 (Our projects)
+import imgCubeLarge from '../assets/art/05_cube_large.webp';
+import imgWave3 from '../assets/art/09_wave_3.webp';
+
+// Artwork imports - Section 04 (Ways to engage)
+import imgGroundElement from '../assets/art/04_ground_element.webp';
+import imgWave4 from '../assets/art/09_wave_4.webp';
+
 const site = await getSiteContent();
 const homeData = await getHomeContent();
-const { hero, stepper, whoWeAre, whatWeDo } = homeData;
+const { hero, stepper, whoWeAre, whatWeDo, projects, waysToEngage } = homeData;
 
 // Optimize images for hero
 const optHeroDesktop = await getImage({ src: imgHeroDesktop, width: 2032 });
@@ -42,6 +50,14 @@ const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 568 });
 // Optimize images for Section 01
 const optBgMiddle = await getImage({ src: imgBgMiddle, width: 1200 });
 const optGradBlueTop = await getImage({ src: imgGradBlueTop, width: 600 });
+
+// Optimize images for Section 03
+const optCubeLarge = await getImage({ src: imgCubeLarge, width: 786 });
+const optWave3 = await getImage({ src: imgWave3, width: 1200 });
+
+// Optimize images for Section 04
+const optGroundElement = await getImage({ src: imgGroundElement, width: 1747 });
+const optWave4 = await getImage({ src: imgWave4, width: 1000 });
 ---
 
 <BaseLayout title={site.seo.siteTitle} description={site.seo.defaultDescription}>
@@ -266,26 +282,181 @@ const optGradBlueTop = await getImage({ src: imgGradBlueTop, width: 600 });
       </section>
 
       <!-- Section 03: Our Projects -->
-      <section id="our-projects" class="page-section">
+      <section id="our-projects" class="page-section section-our-projects">
         <div class="mobile-only section-stepper">
           <Stepper steps={stepper} activeId="our-projects" />
         </div>
-        <div class="reveal">
-          <p class="section-eyebrow">{homeData.projects.eyebrow}</p>
-          <h2>{homeData.projects.heading}</h2>
-          <p class="placeholder-text">Placeholder content for Phase 2C</p>
+
+        <div class="projects-layout">
+          <!-- Left Column (Desktop: Header + Art) -->
+          <div class="projects-col-left">
+            <div class="projects-header reveal">
+              <Eyebrow text={projects.eyebrow} color="magenta-soft" />
+              <SectionHeading heading={projects.heading} class="projects-title" />
+            </div>
+            <div class="projects-art" aria-hidden="true">
+              <ArtLayer 
+                srcDesktop={optWave3.src}
+                positionDesktop="center"
+                positionMobile="center"
+                sizeDesktop="contain"
+                sizeMobile="contain"
+                blendMode="screen"
+                opacity={0.7}
+                drift="slow"
+                mask="radial-gradient(ellipse at 50% 50%, black 50%, transparent 95%)"
+                class="projects-art-wave"
+              />
+              <ArtLayer 
+                srcDesktop={optCubeLarge.src}
+                positionDesktop="center"
+                positionMobile="center"
+                sizeDesktop="contain"
+                sizeMobile="contain"
+                blendMode="screen"
+                opacity={0.95}
+                drift="slow"
+                class="projects-art-cube"
+              />
+            </div>
+          </div>
+
+          <!-- Right Column (Desktop: Intro + Link + Timeline) -->
+          <div class="projects-col-right">
+            <div class="projects-intro-block reveal">
+              <p class="projects-intro">{projects.intro}</p>
+              {projects.link.href && (
+                <div class="projects-action">
+                  <TextLink href={projects.link.href} label={projects.link.label} color="white" />
+                </div>
+              )}
+            </div>
+
+            <!-- Timeline Rail -->
+            <div class="projects-timeline-wrap reveal">
+              <div class="timeline">
+                {projects.items.length === 0 ? (
+                  <div class="timeline-item timeline-empty">
+                    <div class="timeline-marker" aria-hidden="true">
+                      <span class="timeline-dot timeline-dot--glowing"></span>
+                    </div>
+                    <div class="timeline-body">
+                      <div class="timeline-badge-wrap">
+                        <span class="timeline-badge">{projects.emptyState.badge}</span>
+                      </div>
+                      <h3 class="timeline-title">{projects.emptyState.title}</h3>
+                      <p class="timeline-summary">{projects.emptyState.text}</p>
+                    </div>
+                  </div>
+                ) : (
+                  projects.items.map((item: any, index: number) => {
+                    const statusLabel = projects.statusLabels[item.status as keyof typeof projects.statusLabels] || item.status;
+                    const isActive = item.status === 'active';
+                    return (
+                      <div class="timeline-item">
+                        <div class="timeline-marker" aria-hidden="true">
+                          <span class:list={['timeline-dot', { 'timeline-dot--glowing': isActive || index === 0 }]}></span>
+                        </div>
+                        <div class="timeline-body">
+                          <span class={`timeline-status-label status-${item.status}`}>{statusLabel}</span>
+                          <h3 class="timeline-title">{item.name}</h3>
+                          <p class="timeline-summary">{item.summary}</p>
+                          {isActive && (item.department || item.memberCount) && (
+                            <div class="timeline-meta">
+                              {item.department && <span>Dept: {item.department}</span>}
+                              {item.memberCount && <span>{item.memberCount} members</span>}
+                            </div>
+                          )}
+                          {item.link && (
+                            <div class="timeline-action">
+                              <TextLink href={item.link} label="View project" color="white" />
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       <!-- Section 04: Ways to Engage -->
-      <section id="ways-to-engage" class="page-section">
+      <section id="ways-to-engage" class="page-section section-ways-to-engage">
         <div class="mobile-only section-stepper">
           <Stepper steps={stepper} activeId="ways-to-engage" />
         </div>
-        <div class="reveal">
-          <p class="section-eyebrow">{homeData.waysToEngage.eyebrow}</p>
-          <h2>{homeData.waysToEngage.heading}</h2>
-          <p class="placeholder-text">Placeholder content for Phase 2C</p>
+
+        <div class="ways-to-engage-container">
+          <!-- Section 04 Header -->
+          <div class="ways-to-engage-header reveal">
+            <div class="ways-to-engage-header-left">
+              <Eyebrow text={waysToEngage.eyebrow} color="magenta-soft" />
+              <SectionHeading heading={waysToEngage.heading} class="ways-to-engage-title" />
+            </div>
+            <div class="ways-to-engage-header-right">
+              <p class="ways-to-engage-intro">{waysToEngage.intro}</p>
+            </div>
+          </div>
+
+          <!-- Section 04 Grid: 4 Cards -->
+          <div class="ways-to-engage-grid reveal">
+            {waysToEngage.cards.map((card) => (
+              <div class="engage-card">
+                <div class="engage-icon-tile">
+                  <Icon name={card.icon} size={24} />
+                </div>
+                <h3 class="engage-card-title">{card.title}</h3>
+                <p class="engage-card-text">{card.text}</p>
+                {card.href && (
+                  <div class="engage-card-action">
+                    <TextLink href={card.href} label={card.linkLabel} color="magenta" />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Section 04 Bottom Artwork -->
+        <div class="ways-to-engage-art" aria-hidden="true">
+          <ArtLayer 
+            srcDesktop={optGroundElement.src}
+            positionDesktop="bottom center"
+            positionMobile="bottom center"
+            sizeDesktop="contain"
+            sizeMobile="contain"
+            blendMode="screen"
+            opacity={0.65}
+            mask="linear-gradient(to top, black 25%, transparent 100%)"
+            class="engage-art-ground"
+          />
+          <ArtLayer 
+            srcDesktop={optWave1.src}
+            positionDesktop="bottom left"
+            positionMobile="bottom left"
+            sizeDesktop="contain"
+            sizeMobile="contain"
+            blendMode="screen"
+            opacity={0.35}
+            drift="slow"
+            mask="radial-gradient(ellipse at 20% 80%, black 30%, transparent 80%)"
+            class="desktop-only engage-art-wave-left"
+          />
+          <ArtLayer 
+            srcDesktop={optWave4.src}
+            positionDesktop="bottom right"
+            positionMobile="bottom right"
+            sizeDesktop="contain"
+            sizeMobile="contain"
+            blendMode="screen"
+            opacity={0.4}
+            drift="slow"
+            mask="radial-gradient(ellipse at 80% 80%, black 30%, transparent 80%)"
+            class="desktop-only engage-art-wave-right"
+          />
         </div>
       </section>
 
@@ -655,41 +826,248 @@ const optGradBlueTop = await getImage({ src: imgGradBlueTop, width: 600 });
     border-radius: 2px;
   }
 
-  /* Temporary styles for unbuilt sections 03 & 04 */
-  .section-eyebrow {
-    font-size: var(--text-eyebrow);
-    color: var(--color-magenta-soft);
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
+  /* Section 03: Our Projects */
+  .section-our-projects {
+    position: relative;
+    padding: 80px 0 100px;
+  }
+
+  .projects-layout {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .projects-title {
+    max-width: 520px;
+  }
+
+  .projects-intro {
+    font-size: var(--text-body);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .projects-action {
+    margin-top: var(--space-4);
+  }
+
+  .projects-art {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    margin: var(--space-6) 0;
+    pointer-events: none;
+    z-index: 1;
+    isolation: isolate;
+  }
+
+  /* Timeline Styles */
+  .projects-timeline-wrap {
+    margin-top: var(--space-6);
+  }
+
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 12px;
+    bottom: 12px;
+    width: 1px;
+    background: var(--color-border-strong);
+  }
+
+  .timeline-item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .timeline-marker {
+    position: absolute;
+    left: -32px;
+    top: 6px;
+    width: 16px;
+    height: 16px;
     display: flex;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 24px;
+    justify-content: center;
   }
 
-  .section-eyebrow::after {
-    content: '';
-    width: 60px;
-    height: 1px;
-    background: var(--color-magenta-soft);
+  .timeline-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-pill);
+    background: var(--color-surface);
+    border: 2px solid var(--color-border-strong);
+    box-sizing: border-box;
+    transition: all var(--ease-hover) var(--ease);
   }
 
-  h2 {
-    font-size: var(--text-h2);
-    font-weight: 400;
-    line-height: 1.1;
-    margin-bottom: 32px;
+  .timeline-dot--glowing {
+    width: 10px;
+    height: 10px;
+    background: #ffffff;
+    border-color: var(--color-magenta);
+    box-shadow: 0 0 14px var(--color-magenta), 0 0 6px var(--color-purple);
   }
 
-  em {
-    font-family: var(--font-serif);
-    font-style: italic;
+  .timeline-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .timeline-badge-wrap {
+    margin-bottom: var(--space-1);
+  }
+
+  .timeline-badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: var(--radius-pill);
+    font-size: var(--text-small);
+    font-weight: 500;
     color: var(--color-magenta);
-    font-size: var(--text-h2-serif);
+    background: rgba(224, 64, 216, 0.12);
+    border: 1px solid rgba(224, 64, 216, 0.3);
   }
 
-  .placeholder-text {
+  .timeline-status-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-magenta);
+  }
+
+  .timeline-title {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-text);
+    margin: 0;
+    line-height: 1.3;
+  }
+
+  .timeline-summary {
+    font-size: var(--text-small);
     color: var(--color-text-muted);
+    line-height: 1.55;
+    margin: 0;
+    max-width: 480px;
+  }
+
+  .timeline-meta {
+    display: flex;
+    gap: var(--space-4);
+    font-size: 12px;
+    color: var(--color-text-faint);
+    margin-top: var(--space-1);
+  }
+
+  .timeline-action {
+    margin-top: var(--space-2);
+  }
+
+  /* Section 04: Ways to Engage */
+  .section-ways-to-engage {
+    position: relative;
+    padding: 80px 0 120px;
+    overflow: hidden;
+  }
+
+  .ways-to-engage-container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .ways-to-engage-header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .ways-to-engage-intro {
+    font-size: var(--text-body);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .ways-to-engage-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .engage-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    padding: var(--space-6);
+    display: flex;
+    flex-direction: column;
+    min-height: 260px;
+    transition: border-color var(--ease-hover) var(--ease),
+                background var(--ease-hover) var(--ease),
+                transform var(--ease-hover) var(--ease);
+  }
+
+  .engage-card:hover {
+    border-color: var(--color-border-strong);
+    background: var(--color-surface-hover);
+    transform: translateY(-2px);
+  }
+
+  .engage-icon-tile {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-icon-tile);
+    background: var(--color-icon-tile);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    margin-bottom: var(--space-4);
+    flex-shrink: 0;
+  }
+
+  .engage-card-title {
+    font-family: var(--font-sans);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--color-text);
+    margin: 0 0 var(--space-2) 0;
+    line-height: 1.3;
+  }
+
+  .engage-card-text {
+    font-size: var(--text-small);
+    color: var(--color-text-muted);
+    line-height: 1.55;
+    margin: 0 0 var(--space-4) 0;
+    flex-grow: 1;
+  }
+
+  .engage-card-action {
+    margin-top: auto;
+    padding-top: var(--space-2);
+  }
+
+  .ways-to-engage-art {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
   }
 
   .section-stepper {
@@ -700,6 +1078,40 @@ const optGradBlueTop = await getImage({ src: imgGradBlueTop, width: 600 });
     display: none;
   }
 
+  /* Mobile reordering for Section 03 */
+  @media (max-width: 1023px) {
+    .projects-layout {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .projects-col-left,
+    .projects-col-right {
+      display: contents;
+    }
+
+    .projects-header {
+      order: 1;
+    }
+
+    .projects-intro-block {
+      order: 2;
+      margin-top: var(--space-4);
+    }
+
+    .projects-art {
+      order: 3;
+      width: 100%;
+      height: 280px;
+      margin: var(--space-6) 0;
+    }
+
+    .projects-timeline-wrap {
+      order: 4;
+      margin-top: 0;
+    }
+  }
+
   @media (min-width: 1024px) {
     .desktop-only {
       display: flex;
@@ -707,7 +1119,9 @@ const optGradBlueTop = await getImage({ src: imgGradBlueTop, width: 600 });
     
     /* Some elements are not flex */
     .hero-art .desktop-only,
-    .who-we-are-art .desktop-only {
+    .who-we-are-art .desktop-only,
+    .projects-art .desktop-only,
+    .ways-to-engage-art .desktop-only {
       display: block;
     }
     
@@ -811,9 +1225,72 @@ const optGradBlueTop = await getImage({ src: imgGradBlueTop, width: 600 });
       border-right: none;
       padding-right: 0;
     }
+
+    /* Section 03 Desktop */
+    .section-our-projects {
+      padding: 120px 0 140px;
+    }
+
+    .projects-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 480px) minmax(0, 520px);
+      justify-content: space-between;
+      gap: var(--space-8);
+    }
+
+    .projects-col-left,
+    .projects-col-right {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .projects-art {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      height: 400px;
+      margin: var(--space-6) auto 0;
+      z-index: 1;
+      isolation: isolate;
+    }
+
+    .projects-intro-block {
+      margin-bottom: var(--space-6);
+    }
+
+    .projects-intro {
+      max-width: 480px;
+    }
+
+    .projects-timeline-wrap {
+      margin-top: var(--space-6);
+    }
+
+    /* Section 04 Desktop */
+    .section-ways-to-engage {
+      padding: 120px 0 180px;
+    }
+
+    .ways-to-engage-header {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-8);
+      margin-bottom: var(--space-8);
+    }
+
+    .ways-to-engage-intro {
+      max-width: 360px;
+      padding-top: 36px;
+    }
+
+    .ways-to-engage-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-4);
+    }
   }
 
-  @media (min-width: 768px) and (max-width: 1023px) {
+  @media (min-width: 740px) and (max-width: 1023px) {
     .hero-content {
       padding: 0 40px;
     }
@@ -828,6 +1305,11 @@ const optGradBlueTop = await getImage({ src: imgGradBlueTop, width: 600 });
 
     .what-we-do-grid {
       display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-5);
+    }
+
+    .ways-to-engage-grid {
       grid-template-columns: repeat(2, 1fr);
       gap: var(--space-5);
     }
