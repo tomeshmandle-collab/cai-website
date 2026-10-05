@@ -1,0 +1,232 @@
+---
+import { getImage } from 'astro:assets';
+import imgOrb1 from '../../assets/art/08_orb_1.webp';
+import imgOrb2 from '../../assets/art/08_orb_2.webp';
+import imgOrb3 from '../../assets/art/08_orb_3.webp';
+
+interface Props {
+  words?: string[];
+  class?: string;
+}
+
+const {
+  words = ['PEOPLE', 'DRIVE', 'POSSIBILITIES'],
+  class: className = '',
+} = Astro.props;
+
+// Optimize the glowing orb pieces
+const optOrb1 = await getImage({ src: imgOrb1, width: 96 });
+const optOrb2 = await getImage({ src: imgOrb2, width: 96 });
+const optOrb3 = await getImage({ src: imgOrb3, width: 96 });
+---
+
+<div class:list={['arc-graphic-wrapper', className]} aria-hidden="true">
+  <svg
+    viewBox="0 0 680 440"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    class="arc-svg"
+  >
+    <defs>
+      <!-- Gradient for Arc 1 (curves downward) -->
+      <linearGradient id="arc1-gradient" x1="40" y1="90" x2="660" y2="260" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15" />
+        <stop offset="25%" stop-color="#ffffff" stop-opacity="0.8" />
+        <stop offset="65%" stop-color="#a52df5" stop-opacity="0.9" />
+        <stop offset="100%" stop-color="#e040d8" stop-opacity="0.25" />
+      </linearGradient>
+
+      <!-- Gradient for Arc 2 (curves upward) -->
+      <linearGradient id="arc2-gradient" x1="30" y1="310" x2="650" y2="290" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15" />
+        <stop offset="35%" stop-color="#ffffff" stop-opacity="0.85" />
+        <stop offset="70%" stop-color="#a52df5" stop-opacity="0.85" />
+        <stop offset="100%" stop-color="#a52df5" stop-opacity="0.2" />
+      </linearGradient>
+
+      <!-- Faint gradient for secondary harmonic curves -->
+      <linearGradient id="arc-harmonic" x1="0%" y1="50%" x2="100%" y2="50%">
+        <stop offset="0%" stop-color="#a52df5" stop-opacity="0.05" />
+        <stop offset="50%" stop-color="#ffffff" stop-opacity="0.3" />
+        <stop offset="100%" stop-color="#a52df5" stop-opacity="0.05" />
+      </linearGradient>
+    </defs>
+
+    <!-- Faint harmonic curves (orbital / neural feel) -->
+    <path
+      d="M 80,140 C 240,340 440,360 620,240"
+      stroke="url(#arc-harmonic)"
+      stroke-width="1"
+      stroke-dasharray="3 7"
+      fill="none"
+      class="arc-harmonic-line"
+    />
+    <path
+      d="M 60,270 C 220,100 440,90 610,250"
+      stroke="url(#arc-harmonic)"
+      stroke-width="1"
+      stroke-dasharray="2 6"
+      fill="none"
+      class="arc-harmonic-line"
+    />
+
+    <!-- Main Arc 1: sweeps downwards from top-left to bottom-right -->
+    <path
+      d="M 40,90 C 220,380 460,390 660,260"
+      stroke="url(#arc1-gradient)"
+      stroke-width="1.5"
+      fill="none"
+      class="arc-main-curve arc-curve-1"
+    />
+
+    <!-- Main Arc 2: sweeps upwards from bottom-left to top-right -->
+    <path
+      d="M 30,310 C 200,60 480,50 650,290"
+      stroke="url(#arc2-gradient)"
+      stroke-width="1.5"
+      fill="none"
+      class="arc-main-curve arc-curve-2"
+    />
+
+    <!-- Nodes & Orbs -->
+    <!-- Left tail node (30, 310) -->
+    <image href={optOrb2.src} x="6" y="286" width="48" height="48" class="arc-orb" />
+    <circle cx="30" cy="310" r="3" fill="#ffffff" class="arc-node-core" />
+
+    <!-- Left crossing node (135, 175) - main focal node -->
+    <image href={optOrb1.src} x="103" y="143" width="64" height="64" class="arc-orb" />
+    <circle cx="135" cy="175" r="4" fill="#ffffff" class="arc-node-core" />
+
+    <!-- Upper curve node (250, 100) -->
+    <image href={optOrb3.src} x="228" y="78" width="44" height="44" class="arc-orb" />
+    <circle cx="250" cy="100" r="3" fill="#ffffff" class="arc-node-core" />
+
+    <!-- Upper crest node (350, 78) -->
+    <image href={optOrb2.src} x="326" y="54" width="48" height="48" class="arc-orb" />
+    <circle cx="350" cy="78" r="3.5" fill="#ffffff" class="arc-node-core" />
+
+    <!-- Lower trough node (355, 338) -->
+    <image href={optOrb3.src} x="333" y="316" width="44" height="44" class="arc-orb" />
+    <circle cx="355" cy="338" r="3" fill="#ffffff" class="arc-node-core" />
+
+    <!-- Right crossing node (525, 225) - main focal node -->
+    <image href={optOrb1.src} x="493" y="193" width="64" height="64" class="arc-orb" />
+    <circle cx="525" cy="225" r="4" fill="#ffffff" class="arc-node-core" />
+
+    <!-- Right tail node 1 (650, 290) -->
+    <image href={optOrb2.src} x="626" y="266" width="48" height="48" class="arc-orb" />
+    <circle cx="650" cy="290" r="3" fill="#ffffff" class="arc-node-core" />
+
+    <!-- Additional ambient node on right curve (590, 170) -->
+    <image href={optOrb3.src} x="570" y="150" width="40" height="40" class="arc-orb" />
+    <circle cx="590" cy="170" r="2.5" fill="#ffffff" class="arc-node-core" />
+
+    <!-- Desktop Words Placement (upper right quadrant) -->
+    <g class="arc-words desktop-words">
+      {words.map((word, i) => (
+        <text
+          x="420"
+          y={150 + i * 28}
+          class="arc-word"
+        >
+          {word}
+        </text>
+      ))}
+    </g>
+
+    <!-- Mobile Words Placement (lower left quadrant) -->
+    <g class="arc-words mobile-words">
+      {words.map((word, i) => (
+        <text
+          x="50"
+          y={330 + i * 30}
+          class="arc-word"
+        >
+          {word}
+        </text>
+      ))}
+    </g>
+  </svg>
+</div>
+
+<style>
+  .arc-graphic-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 680px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .arc-svg {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .arc-orb {
+    mix-blend-mode: screen;
+    pointer-events: none;
+  }
+
+  .arc-node-core {
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.9))
+            drop-shadow(0 0 12px var(--color-purple));
+  }
+
+  .arc-word {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    fill: #ffffff;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+
+  /* Responsive visibility of word groups */
+  .mobile-words {
+    display: none;
+  }
+
+  .desktop-words {
+    display: block;
+  }
+
+  @media (max-width: 1023px) {
+    .desktop-words {
+      display: none;
+    }
+    .mobile-words {
+      display: block;
+    }
+
+    .arc-word {
+      font-size: 20px; /* Scales properly in responsive SVG coordinates */
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .arc-orb {
+      animation: orb-pulse 4s ease-in-out infinite alternate;
+    }
+
+    .arc-orb:nth-child(even) {
+      animation-duration: 5s;
+      animation-delay: -2s;
+    }
+
+    @keyframes orb-pulse {
+      0% {
+        opacity: 0.75;
+        transform: scale(0.96);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1.04);
+      }
+    }
+  }
+</style>

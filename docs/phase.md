@@ -142,13 +142,13 @@ Commit: `fix(home): mobile and tablet layout` · Tag: `phase-2`
 ## Phase 3 — Team page
 
 ### 3A — Hero and arc
-- [ ] Team hero per `design.md` 5.1 with computed subline, corner text, pill, button to `#the-team`.
-- [ ] `ArcGraphic` as inline SVG (two crossing arcs, glowing nodes, three words).
-- [ ] Stepper with three steps (reuse the component).
+- [x] Team hero per `design.md` 5.1 with computed subline, corner text, pill, button to `#the-team`.
+- [x] `ArcGraphic` as inline SVG (two crossing arcs, glowing nodes, three words).
+- [x] Stepper with three steps (reuse the component).
 
 Acceptance
-- [ ] Subline reads "Fifteen people, eight functions, one centre — …" from the data.
-- [ ] Stepper shows 01 Our structure, 02 The team, 03 The collective, each once.
+- [x] Subline reads "Fifteen people, eight functions, one centre — …" from the data.
+- [x] Stepper shows 01 Our structure, 02 The team, 03 The collective, each once.
 
 Commit: `feat(team): hero, arc graphic and stepper`
 
