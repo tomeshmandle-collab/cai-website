@@ -94,15 +94,32 @@ const wrapperProps = href ? { href, class: 'function-card has-link' } : { class:
 
   @media (max-width: 767px) {
     .function-card {
-      padding: 22px;
+      padding: 16px;
+      gap: 12px;
+    }
+
+    .card-icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .card-title {
+      font-size: 14px;
+    }
+
+    .card-desc {
+      font-size: 12px;
+      line-height: 1.45;
     }
     
     .card-arrow {
       display: block;
+      bottom: 14px;
+      right: 14px;
     }
     
     .function-card.has-link {
-      padding-bottom: 48px; /* space for arrow */
+      padding-bottom: 36px; /* space for arrow */
     }
   }
 </style>

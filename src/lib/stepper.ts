@@ -16,17 +16,29 @@ export function initStepper() {
     let closestSection: HTMLElement | null = null;
     let minDistance = Infinity;
     const viewportCenter = window.innerHeight / 2;
+    const isAtBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60;
 
-    for (const section of sections) {
-      const rect = section.getBoundingClientRect();
-      const sectionCenter = rect.top + rect.height / 2;
-      const distance = Math.abs(viewportCenter - sectionCenter);
-      
-      // We also consider it active if the top of the section is near the top of the screen
-      // or if it's currently occupying the majority of the screen.
-      if (distance < minDistance) {
-        minDistance = distance;
-        closestSection = section;
+    if (isAtBottom && sections.length > 0) {
+      closestSection = sections[sections.length - 1];
+    } else {
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= viewportCenter && rect.bottom >= viewportCenter) {
+          closestSection = section;
+          break;
+        }
+      }
+
+      if (!closestSection) {
+        for (const section of sections) {
+          const rect = section.getBoundingClientRect();
+          const sectionCenter = rect.top + rect.height / 2;
+          const distance = Math.abs(viewportCenter - sectionCenter);
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestSection = section;
+          }
+        }
       }
     }
 

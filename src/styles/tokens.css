@@ -35,6 +35,7 @@
 
   /* Container */
   --container-max: 1240px;
+  --container: 1240px;
   --container-px: 24px; /* mobile padding */
 
   /* Radii */
@@ -60,6 +61,12 @@
   --text-corner: 11px;
   --text-stepper-num: 15px;
   --text-stepper: 13px;
+}
+
+@media (max-width: 360px) {
+  :root {
+    --container-px: 16px;
+  }
 }
 
 @media (min-width: 740px) {

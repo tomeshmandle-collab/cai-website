@@ -229,7 +229,7 @@ const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 800 });
   .team-hero-content {
     position: relative;
     width: 100%;
-    max-width: var(--container);
+    max-width: var(--container-max);
     margin: 0 auto;
     padding: 100px var(--container-px) 60px;
     min-height: 100vh;
@@ -568,8 +568,8 @@ const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 800 });
 
   .function-grid {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--space-4);
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
   .member-groups {
@@ -581,6 +581,7 @@ const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 800 });
   @media (min-width: 768px) and (max-width: 1023px) {
     .function-grid {
       grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
     }
   }
 </style>

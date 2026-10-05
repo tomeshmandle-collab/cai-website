@@ -166,14 +166,14 @@ Acceptance
 Commit: `feat(team): function grid, member cards and carousel`
 
 ### 3C — Page bottom, mobile pass
-- [ ] Page-bottom band; no Past Teams.
-- [ ] Compare with `teams_webpage_mobile_version.png` and fix.
+- [x] Scope decision: Section 03 (The collective) intentionally removed; Finance & Operations is retained as the final group inside Section 02 (The team); stepper has 2 steps (01 Our structure, 02 The team) with Section 02 active through all groups.
+- [x] Compare with `teams_webpage_mobile_version.png` and fix: 2x4 function grid, card padding & typography, carousel swipe & snap, dots & arrows, zero horizontal scroll from 320 px up.
 
 Acceptance
-- [ ] Counts shown everywhere equal the data (15 / 8).
-- [ ] Layout checked at 320, 390, 768, 1024, 1440 px.
+- [x] Counts shown everywhere equal the data (15 people / 8 functions).
+- [x] Layout checked at 320, 390, 768, 1024, 1440 px.
 
-Commit: `feat(team): page bottom and mobile pass` · Tag: `phase-3`
+Commit: `feat(team): mobile pass and finalize phase 3` · Tag: `phase-3`
 
 ---
 
