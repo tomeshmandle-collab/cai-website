@@ -12,6 +12,8 @@ interface Props {
   mask?: string;
   drift?: 'slow' | 'none';
   class?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'low' | 'auto';
 }
 
 const {
@@ -27,6 +29,8 @@ const {
   mask,
   drift = 'none',
   class: className = '',
+  loading = 'lazy',
+  fetchpriority,
 } = Astro.props;
 
 // Determine if we need `<picture>` for mobile art direction
@@ -49,10 +53,10 @@ const usePicture = !!srcMobile;
   {usePicture ? (
     <picture>
       <source media="(max-width: 767px)" srcset={srcMobile} />
-      <img src={srcDesktop} alt={alt} />
+      <img src={srcDesktop} alt={alt} loading={loading} fetchpriority={fetchpriority} />
     </picture>
   ) : (
-    <img src={srcDesktop} alt={alt} />
+    <img src={srcDesktop} alt={alt} loading={loading} fetchpriority={fetchpriority} />
   )}
 </div>
 

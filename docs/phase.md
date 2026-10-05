@@ -186,12 +186,12 @@ Commit: `feat(team): mobile pass and finalize phase 3` · Tag: `phase-3`
 - [x] Fix every item marked "must" or "should" in the review; list what was skipped and why.
 
 ### 4C — Accessibility and performance
-- [ ] Keyboard-only walkthrough; heading order; landmarks; alt text; contrast; focus visibility; reduced motion.
-- [ ] Image sizes, lazy-loading, layout shift, JavaScript size, font loading; Lighthouse mobile run with scores recorded in `docs/review-quality.md`.
+- [x] Keyboard-only walkthrough; heading order; landmarks; alt text; contrast; focus visibility; reduced motion.
+- [x] Image sizes, lazy-loading, layout shift, JavaScript size, font loading; Lighthouse mobile run with scores recorded in `docs/review-quality.md`.
 
 Acceptance
-- [ ] Lighthouse mobile: Performance ≥ 85, Accessibility ≥ 95, Best Practices ≥ 95, SEO ≥ 95 on the Home and Team pages.
-- [ ] No console errors on any page.
+- [x] Lighthouse mobile: Performance ≥ 85, Accessibility ≥ 95, Best Practices ≥ 95, SEO ≥ 95 on the Home and Team pages.
+- [x] No console errors on any page.
 
 Commit: `fix: design review and quality pass` · Tag: `phase-4`
 

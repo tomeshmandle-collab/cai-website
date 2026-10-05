@@ -82,7 +82,7 @@ const activeSocials = site.footer.socials.filter(s => s.url && s.url.trim() !== 
             const isMore = navItem.label.toLowerCase() === 'more';
             return (
               <li class="navigate-item">
-                <a href={navItem.href} class="navigate-link">
+                <a href={navItem.href} class="navigate-link" aria-label={isMore ? "Contact CAI" : undefined} title={isMore ? "Contact CAI" : undefined}>
                   <span>{navItem.label}</span>
                   <svg
                     class:list={['nav-arrow', { 'nav-arrow--always': isMore }]}
