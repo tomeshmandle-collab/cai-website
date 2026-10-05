@@ -153,15 +153,15 @@ Acceptance
 Commit: `feat(team): hero, arc graphic and stepper`
 
 ### 3B — Functions, members, carousel
-- [ ] Function grid (4×2 desktop, 2×4 mobile) from `team.json`.
-- [ ] `MemberCard` with **one fixed size**, 4:5 ratio, black-and-white photo, gradient, text, optional arrow, placeholder portrait.
-- [ ] `MemberGroup` with title and computed count; wrapped grid on desktop; swipe carousel with buttons and dots on mobile (`carousel.ts`).
-- [ ] Groups exactly as in `team.json` (counts 5, 3, 2, 2, 3).
+- [x] Function grid (4×2 desktop, 2×4 mobile) from `team.json`.
+- [x] `MemberCard` with **one fixed size**, 4:5 ratio, black-and-white photo, gradient, text, optional arrow, placeholder portrait.
+- [x] `MemberGroup` with title and computed count; wrapped grid on desktop; swipe carousel with buttons and dots on mobile (`carousel.ts`).
+- [x] Groups exactly as in `team.json` (counts 5, 3, 2, 2, 3).
 
 Acceptance
-- [ ] All 15 cards are the same size in every group and every breakpoint.
-- [ ] Adding a 16th member in `team.json` updates the group count, "people" numbers and words with no code change (then remove it).
-- [ ] Adding a photo named in JSON shows it; removing the file shows the placeholder, no errors.
+- [x] All 15 cards are the same size in every group and every breakpoint.
+- [x] Adding a 16th member in `team.json` updates the group count, "people" numbers and words with no code change (then remove it).
+- [x] Adding a photo named in JSON shows it; removing the file shows the placeholder, no errors.
 
 Commit: `feat(team): function grid, member cards and carousel`
 

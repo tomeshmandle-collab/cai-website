@@ -5,6 +5,9 @@ import { fillTemplate } from '../lib/counts';
 import ArtLayer from '../components/ArtLayer.astro';
 import Stepper from '../components/Stepper.astro';
 import ArcGraphic from '../components/team/ArcGraphic.astro';
+import Eyebrow from '../components/ui/Eyebrow.astro';
+import FunctionCard from '../components/team/FunctionCard.astro';
+import MemberGroup from '../components/team/MemberGroup.astro';
 import { getImage } from 'astro:assets';
 
 // Artwork imports - Team Hero
@@ -130,8 +133,27 @@ const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 800 });
         <div class="mobile-only section-stepper">
           <Stepper steps={team.stepper} activeId="our-structure" />
         </div>
-        <div class="section-placeholder reveal">
-          <!-- Content to be implemented in Phase 3B -->
+        <div class="section-content reveal">
+          <div class="section-header-split">
+            <div class="header-left">
+              <Eyebrow text={await fillTemplate(team.structure.eyebrowTemplate)} color="magenta" />
+              <h2 class="team-section-title">{team.structure.heading}</h2>
+            </div>
+            <div class="header-right">
+              <p class="section-intro">{team.structure.intro}</p>
+            </div>
+          </div>
+          
+          <div class="function-grid">
+            {team.functions.map((func: any) => (
+              <FunctionCard
+                icon={func.icon}
+                title={func.name}
+                description={func.description}
+                href={func.link}
+              />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -140,8 +162,22 @@ const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 800 });
         <div class="mobile-only section-stepper">
           <Stepper steps={team.stepper} activeId="the-team" />
         </div>
-        <div class="section-placeholder reveal">
-          <!-- Content to be implemented in Phase 3B -->
+        <div class="section-content reveal">
+          <div class="section-header-split">
+            <div class="header-left">
+              <Eyebrow text={await fillTemplate(team.theTeam.eyebrowTemplate)} color="magenta" />
+              <h2 class="team-section-title">{team.theTeam.heading}</h2>
+            </div>
+            <div class="header-right">
+              <p class="section-intro">{await fillTemplate(team.theTeam.introTemplate)}</p>
+            </div>
+          </div>
+          
+          <div class="member-groups">
+            {team.theTeam.groups.map((group: any) => (
+              <MemberGroup groupId={group.id} />
+            ))}
+          </div>
         </div>
       </section>
 
@@ -161,11 +197,13 @@ const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 800 });
 <script>
   import { initStepper } from '../lib/stepper';
   import { initReveal } from '../lib/reveal';
+  import { initCarousel } from '../lib/carousel';
 
   // Initialize scripts on the client
   document.addEventListener('DOMContentLoaded', () => {
     initStepper();
     initReveal();
+    initCarousel();
   });
 </script>
 
@@ -483,6 +521,75 @@ const optGradBlueDark = await getImage({ src: imgGradBlueDark, width: 800 });
     .page-section {
       padding: 120px 0 140px;
       min-height: 60vh;
+    }
+
+    .section-header-split {
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--space-8);
+    }
+
+    .header-left {
+      flex: 1;
+      max-width: 480px;
+    }
+
+    .header-right {
+      flex: 1;
+      max-width: 380px;
+      margin-top: 40px;
+    }
+
+    .function-grid {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+  }
+
+  /* Section Common Styles */
+  .section-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .section-header-split {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .team-section-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-h2-serif);
+    font-weight: 400;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .section-intro {
+    font-size: var(--text-body);
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  .function-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .member-groups {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--space-6);
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .function-grid {
+      grid-template-columns: repeat(2, 1fr);
     }
   }
 </style>

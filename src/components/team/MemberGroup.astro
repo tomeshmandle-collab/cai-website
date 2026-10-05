@@ -1,0 +1,200 @@
+---
+import { getTeamContent } from '../../lib/content';
+import MemberCard from './MemberCard.astro';
+
+interface Props {
+  groupId: string;
+}
+
+const { groupId } = Astro.props;
+const team = await getTeamContent();
+
+const group = team.theTeam.groups.find(g => g.id === groupId);
+if (!group) throw new Error(`Group not found: ${groupId}`);
+
+const groupMembers = team.members.filter(m => group.functions.includes(m.function));
+const count = groupMembers.length;
+
+function getFunctionName(functionId: string) {
+  const func = team.functions.find(f => f.id === functionId);
+  return func ? func.name : functionId;
+}
+---
+
+<div class="member-group" data-carousel>
+  <div class="group-header">
+    <h3 class="group-title">{group.title}</h3>
+    <div class="group-controls">
+      <!-- Carousel prev/next buttons (mobile only) -->
+      <div class="carousel-buttons mobile-only">
+        <button class="carousel-btn prev" aria-label="Previous" disabled>
+          <span aria-hidden="true">←</span>
+        </button>
+        <button class="carousel-btn next" aria-label="Next">
+          <span aria-hidden="true">→</span>
+        </button>
+      </div>
+      <!-- Group count -->
+      <span class="group-count desktop-only">{count}</span>
+      <span class="group-count mobile-only">{count}</span>
+    </div>
+  </div>
+  
+  <div class="carousel-viewport">
+    <div class="carousel-track">
+      {groupMembers.map(member => (
+        <MemberCard
+          name={member.name}
+          role={member.role}
+          functionName={getFunctionName(member.function)}
+          photo={member.photo}
+          focus={member.focus}
+          link={member.link}
+        />
+      ))}
+    </div>
+  </div>
+  
+  <!-- Dots (mobile only) -->
+  <div class="carousel-dots mobile-only" aria-hidden="true">
+    {groupMembers.map((_, i) => (
+      <span class={`dot ${i === 0 ? 'is-active' : ''}`} data-index={i}></span>
+    ))}
+  </div>
+</div>
+
+<style>
+  .member-group {
+    margin-bottom: 56px;
+  }
+
+  .group-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-5);
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: 16px;
+  }
+
+  .group-title {
+    font-size: var(--text-lead);
+    font-weight: 500;
+    color: var(--color-text);
+    margin: 0;
+  }
+
+  .group-controls {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .group-count {
+    font-size: 14px;
+    color: var(--color-text-faint);
+  }
+
+  /* Desktop Grid */
+  @media (min-width: 1024px) {
+    .carousel-track {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    
+    .carousel-buttons, .carousel-dots {
+      display: none !important;
+    }
+  }
+
+  /* Tablet / Mobile Carousel */
+  @media (max-width: 1023px) {
+    .member-group {
+      --card-width: 164px;
+    }
+    
+    /* Slightly larger cards on tablet */
+    @media (min-width: 768px) {
+      .member-group {
+        --card-width: 200px;
+      }
+    }
+
+    .carousel-viewport {
+      /* Hide scrollbar */
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      /* Snap scrolling */
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      margin-left: calc(var(--container-px) * -1);
+      margin-right: calc(var(--container-px) * -1);
+      padding: 0 var(--container-px) 16px;
+    }
+
+    .carousel-viewport::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 16px;
+      /* Prevent elements from wrapping */
+      width: max-content;
+    }
+
+    .carousel-track > * {
+      scroll-snap-align: start;
+    }
+
+    .carousel-buttons {
+      display: flex;
+      gap: 8px;
+    }
+
+    .carousel-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--color-border);
+      background: transparent;
+      color: var(--color-text);
+      cursor: pointer;
+      transition: all var(--ease);
+    }
+
+    .carousel-btn:hover:not(:disabled) {
+      border-color: var(--color-border-strong);
+      background: var(--color-surface);
+    }
+
+    .carousel-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .carousel-dots {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 16px;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-border);
+      transition: background var(--ease);
+    }
+
+    .dot.is-active {
+      background: var(--color-magenta);
+    }
+  }
+</style>
