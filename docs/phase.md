@@ -129,11 +129,11 @@ Acceptance
 Commit: `feat(home): projects timeline and ways to engage`
 
 ### 2D — Home mobile and tablet pass
-- [ ] Compare each section with `home_webpage_mobile_version.png`; fix spacing, order, type scale, artwork crops.
-- [ ] Tablet (768–1023 px): mobile structure with two-column cards.
+- [x] Compare each section with `home_webpage_mobile_version.png`; fix spacing, order, type scale, artwork crops.
+- [x] Tablet (768–1023 px): mobile structure with two-column cards.
 
 Acceptance
-- [ ] No horizontal scroll from 320 px upward; every section checked at 320, 390, 768, 1024, 1440 px.
+- [x] No horizontal scroll from 320 px upward; every section checked at 320, 390, 768, 1024, 1440 px.
 
 Commit: `fix(home): mobile and tablet layout` · Tag: `phase-2`
 

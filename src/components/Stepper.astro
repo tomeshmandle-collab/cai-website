@@ -12,12 +12,16 @@ interface Props {
 }
 
 const { steps, activeId, class: className = '' } = Astro.props;
+
+// For in-section mobile steppers (when activeId is passed), show from activeId onward
+const activeIndex = activeId ? steps.findIndex((s) => s.id === activeId) : -1;
+const visibleSteps = activeIndex !== -1 ? steps.slice(activeIndex) : steps;
 ---
 
 <nav class:list={['stepper', className]} aria-label="Section navigation">
-  <ul class="stepper-list">
-    {steps.map((step) => {
-      const isActive = activeId === step.id;
+  <ul class:list={['stepper-list', { 'single-step': visibleSteps.length <= 1 }]}>
+    {visibleSteps.map((step) => {
+      const isActive = activeId ? activeId === step.id : step.id === steps[0]?.id;
       return (
         <li class="stepper-item">
           <a
@@ -142,31 +146,61 @@ const { steps, activeId, class: className = '' } = Astro.props;
     }
   }
 
-  /* Mobile layout: Compact horizontal list */
+  /* Mobile layout: Compact vertical rail matching mobile design */
   @media (max-width: 1023px) {
     .stepper-list {
-      flex-direction: row;
-      gap: 16px;
-      overflow-x: auto;
-      padding-bottom: 8px; /* space for scrollbar */
-      scrollbar-width: none;
+      flex-direction: column;
+      gap: 18px;
+      position: relative;
+      padding-left: 0;
     }
-    
-    .stepper-list::-webkit-scrollbar {
+
+    .stepper-list::before {
+      content: '';
+      position: absolute;
+      left: calc(var(--node-size) / 2);
+      top: 6px;
+      bottom: 6px;
+      width: 1px;
+      background: var(--color-border);
+      z-index: 0;
+      transform: translateX(-50%);
+    }
+
+    .stepper-list.single-step::before {
       display: none;
     }
 
+    .stepper-item {
+      position: relative;
+      z-index: 1;
+    }
+
     .stepper-link {
-      gap: 8px;
+      gap: 14px;
       white-space: nowrap;
     }
     
     .stepper-node {
-      display: none; /* Hide node on mobile to match compact design */
+      display: block;
+      width: var(--node-size);
+      height: var(--node-size);
+      border-radius: 50%;
+      background: transparent;
+      border: 1px solid var(--color-text-faint);
     }
 
     .stepper-link.is-active {
       color: var(--color-text);
+    }
+
+    .stepper-link.is-active .stepper-node {
+      width: var(--node-active-size);
+      height: var(--node-active-size);
+      background: var(--color-text);
+      border-color: var(--color-text);
+      box-shadow: var(--glow-purple);
+      margin-left: -1px;
     }
 
     .stepper-link.is-active .stepper-number {
@@ -181,6 +215,7 @@ const { steps, activeId, class: className = '' } = Astro.props;
       width: 100%;
       height: 1px;
       background: var(--color-purple-soft);
+      box-shadow: var(--glow-purple);
     }
   }
 

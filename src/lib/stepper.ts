@@ -32,7 +32,8 @@ export function initStepper() {
 
     if (closestSection) {
       const activeId = (closestSection as HTMLElement).id;
-      links.forEach((link) => {
+      const desktopLinks = document.querySelectorAll<HTMLAnchorElement>('.stepper-sticky .stepper-link');
+      desktopLinks.forEach((link) => {
         if (link.dataset.step === activeId) {
           link.classList.add('is-active');
           link.setAttribute('aria-current', 'step');
