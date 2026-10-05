@@ -1,0 +1,311 @@
+---
+import { Image } from 'astro:assets';
+import { getSiteContent } from '../../lib/content';
+import { getMainNav, getMoreNav } from '../../lib/pages';
+import { resolveBrandLogo } from '../../lib/images';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '' } = Astro.props;
+const site = await getSiteContent();
+const mainNav = await getMainNav();
+const moreNav = await getMoreNav();
+const logoImage = await resolveBrandLogo(site.brand.logo, false);
+
+const isMoreActive = moreNav.some(item => {
+  if (item.route === '/') return currentPath === '/';
+  return currentPath.startsWith(item.route);
+});
+---
+
+<div
+  id="mobile-menu-overlay"
+  class="mobile-menu-overlay"
+  hidden
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-label={site.ui.openMenu}
+  data-menu-overlay
+>
+  <div class="mobile-menu-header">
+    <a href="/" class="brand-link" aria-label={site.brand.name}>
+      <div class="logo-slot">
+        <Image src={logoImage} alt="" width={44} height={44} class="logo-img" />
+      </div>
+      {site.brand.showWordmark && (
+        <span class="wordmark">
+          <span>Centre for</span>
+          <span>Artificial Intelligence</span>
+        </span>
+      )}
+    </a>
+
+    <button
+      type="button"
+      class="close-button"
+      aria-label={site.ui.closeMenu}
+      data-menu-close
+    >
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <nav class="mobile-menu-nav" aria-label="Mobile Navigation">
+    <ul class="nav-list">
+      {mainNav.map(item => {
+        const isActive = currentPath === item.route;
+        return (
+          <li class="nav-item">
+            <a
+              href={item.route}
+              class:list={['nav-link', { 'is-active': isActive }]}
+            >
+              {item.title}
+            </a>
+          </li>
+        );
+      })}
+
+      <li class="nav-item more-item-container">
+        <button
+          type="button"
+          class:list={['more-toggle-button', { 'is-active': isMoreActive }]}
+          aria-expanded="false"
+          data-menu-more-toggle
+        >
+          <span>{site.ui.moreMenu}</span>
+          <svg
+            class="more-chevron"
+            data-menu-more-chevron
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M4 6L8 10L12 6"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+
+        <ul class="more-submenu" hidden data-menu-more-submenu>
+          {moreNav.map(item => {
+            const isActive = currentPath === item.route;
+            return (
+              <li class="submenu-item">
+                <a
+                  href={item.route}
+                  class:list={['submenu-link', { 'is-active': isActive }]}
+                >
+                  {item.title}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="mobile-menu-footer">
+    <a href={site.headerCta.href} class="cta-button">
+      <span>{site.headerCta.label}</span>
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+        <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<script>
+  import '../../scripts/menu';
+</script>
+
+<style>
+  .mobile-menu-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background-color: rgba(5, 6, 10, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-4) var(--container-px) var(--space-6);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .mobile-menu-overlay[hidden] {
+    display: none !important;
+  }
+
+  .mobile-menu-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: var(--space-6);
+  }
+
+  .brand-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+    color: var(--color-text);
+  }
+
+  .logo-slot {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    border-radius: var(--radius-pill);
+  }
+
+  .wordmark {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  .close-button {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    cursor: pointer;
+  }
+
+  .mobile-menu-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: var(--space-6);
+  }
+
+  .nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+
+  .nav-link {
+    font-size: clamp(24px, 6vw, 28px);
+    font-weight: 400;
+    color: var(--color-text-muted);
+    text-decoration: none;
+    transition: color var(--ease-hover) var(--ease);
+    display: inline-block;
+  }
+
+  .nav-link:hover,
+  .nav-link.is-active {
+    color: var(--color-text);
+  }
+
+  .more-item-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .more-toggle-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: clamp(24px, 6vw, 28px);
+    font-weight: 400;
+    color: var(--color-text-muted);
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+    transition: color var(--ease-hover) var(--ease);
+  }
+
+  .more-toggle-button:hover,
+  .more-toggle-button.is-active {
+    color: var(--color-text);
+  }
+
+  .more-chevron {
+    transition: transform var(--ease-hover) var(--ease);
+  }
+
+  .more-submenu {
+    list-style: none;
+    margin: var(--space-4) 0 0;
+    padding: 0 0 0 var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    border-left: 1px solid var(--color-border);
+  }
+
+  .more-submenu[hidden] {
+    display: none !important;
+  }
+
+  .submenu-link {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--color-text-faint);
+    text-decoration: none;
+    transition: color var(--ease-hover) var(--ease);
+  }
+
+  .submenu-link:hover,
+  .submenu-link.is-active {
+    color: var(--color-text);
+  }
+
+  .mobile-menu-footer {
+    padding-top: var(--space-6);
+  }
+
+  .cta-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    width: 100%;
+    height: 48px;
+    background-color: var(--color-button-bg);
+    color: var(--color-button-text);
+    border-radius: var(--radius-pill);
+    font-size: var(--text-body);
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: var(--shadow-button);
+  }
+</style>

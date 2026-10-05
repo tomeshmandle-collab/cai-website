@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPageByRoute } from '../lib/pages';
+
+const page = await getPageByRoute('/ai-updates');
+---
+
+<BaseLayout title={page?.title ?? 'AI Updates'} noindex={true}>
+  <h1 class="visually-hidden">{page?.title ?? 'AI Updates'}</h1>
+</BaseLayout>

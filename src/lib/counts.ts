@@ -29,6 +29,10 @@ export async function getFunctionsCount(): Promise<number> {
   return team.functions.length;
 }
 
+export function getCopyrightYear(): number {
+  return new Date().getFullYear();
+}
+
 export async function fillTemplate(template: string): Promise<string> {
   const team = await getTeamContent();
   const people = team.members.length;
@@ -44,3 +48,4 @@ export async function fillTemplate(template: string): Promise<string> {
     .replace(/{FUNCTIONSWORD}/g, numberToWords(functions, 'upper'))
     .replace(/{currentYear}/g, team.currentYear);
 }
+

@@ -1,15 +1,29 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getSiteContent } from '../lib/content';
+
+const site = await getSiteContent();
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>CAI — coming soon</title>
-	</head>
-	<body>
-		<h1>CAI — coming soon</h1>
-	</body>
-</html>
+<BaseLayout title={site.seo.siteTitle} description={site.seo.defaultDescription}>
+  <div class="container temp-page-content">
+    <h1>{site.brand.name}</h1>
+    <p>{site.brand.tagline}</p>
+  </div>
+</BaseLayout>
+
+<style>
+  .temp-page-content {
+    padding-block: var(--space-8);
+  }
+
+  h1 {
+    font-size: var(--text-h2);
+    margin-bottom: var(--space-3);
+  }
+
+  p {
+    font-size: var(--text-lead);
+    color: var(--color-text-muted);
+  }
+</style>

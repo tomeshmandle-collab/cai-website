@@ -60,34 +60,34 @@ Commit: `chore: scaffold astro project and project structure` · Tag: `phase-0`
 
 ### 1A — Content system and design tokens
 Tasks
-- [ ] `src/styles/tokens.css`, `base.css`, `utilities.css` from `design.md` section 2 (colours, type, spacing, radii, shadows, breakpoints, motion, focus, reduced motion).
-- [ ] Copy `content-seed/*.json` into `src/content/`.
-- [ ] `src/content/config.ts` with Zod schemas that match the seed files exactly.
-- [ ] `src/lib/content.ts`, `counts.ts` (people count, function count, number-to-words for 1–30, template filling), `images.ts` (photo/brand resolver with placeholder fallback via `import.meta.glob`), `pages.ts`.
-- [ ] Neutral placeholder images/SVGs for: logo, affiliation logo, member portrait.
+- [x] `src/styles/tokens.css`, `base.css`, `utilities.css` from `design.md` section 2 (colours, type, spacing, radii, shadows, breakpoints, motion, focus, reduced motion).
+- [x] Copy `content-seed/*.json` into `src/content/`.
+- [x] `src/content/config.ts` with Zod schemas that match the seed files exactly.
+- [x] `src/lib/content.ts`, `counts.ts` (people count, function count, number-to-words for 1–30, template filling), `images.ts` (photo/brand resolver with placeholder fallback via `import.meta.glob`), `pages.ts`.
+- [x] Neutral placeholder images/SVGs for: logo, affiliation logo, member portrait.
 
 Acceptance
-- [ ] `npm run build` passes; deliberately breaking a JSON field makes the build fail with a clear message (then undo).
-- [ ] `counts.ts` returns people 15, functions 8, "Fifteen", "eight".
-- [ ] No component hard-codes colours or sizes.
+- [x] `npm run build` passes; deliberately breaking a JSON field makes the build fail with a clear message (then undo).
+- [x] `counts.ts` returns people 15, functions 8, "Fifteen", "eight".
+- [x] No component hard-codes colours or sizes.
 
 Commit: `feat: design tokens, content schemas and helpers` 
 
 ### 1B — Layout shell and blank pages
 Tasks
-- [ ] `BaseLayout.astro` (head, SEO tags, skip link, header, main, footer).
-- [ ] Header: logo slot, wordmark (respecting `showWordmark`), nav pill, More dropdown, "Get started" button; transparent on top, sticky blurred after scroll.
-- [ ] Mobile menu overlay with focus trap, Escape, scroll lock, inline More.
-- [ ] Footer with all four columns, socials hidden when empty, automatic year, legal links.
-- [ ] All 12 blank pages created from the registry, each with a hidden `<h1>`, `noindex`, and left out of the sitemap.
-- [ ] `sitemap.xml` and `robots.txt`.
-- [ ] Temporary simple Home and Team pages so navigation works.
+- [x] `BaseLayout.astro` (head, SEO tags, skip link, header, main, footer).
+- [x] Header: logo slot, wordmark (respecting `showWordmark`), nav pill, More dropdown, "Get started" button; transparent on top, sticky blurred after scroll.
+- [x] Mobile menu overlay with focus trap, Escape, scroll lock, inline More.
+- [x] Footer with all four columns, socials hidden when empty, automatic year, legal links.
+- [x] All 12 blank pages created from the registry, each with a hidden `<h1>`, `noindex`, and left out of the sitemap.
+- [x] `sitemap.xml` and `robots.txt`.
+- [x] Temporary simple Home and Team pages so navigation works.
 
 Acceptance
-- [ ] Every link in the header, dropdown, mobile menu, and footer opens a page (no 404).
-- [ ] Keyboard: Tab reaches everything; Escape closes dropdown and menu; focus visible.
-- [ ] Layout matches the design images for header and footer at 390, 768, 1440 px.
-- [ ] Blank pages show header, footer, and nothing in between.
+- [x] Every link in the header, dropdown, mobile menu, and footer opens a page (no 404).
+- [x] Keyboard: Tab reaches everything; Escape closes dropdown and menu; focus visible.
+- [x] Layout matches the design images for header and footer at 390, 768, 1440 px.
+- [x] Blank pages show header, footer, and nothing in between.
 
 Commit: `feat: layout shell, navigation, footer and blank pages` · Tag: `phase-1`
 

@@ -1,0 +1,269 @@
+---
+import { Image } from 'astro:assets';
+import { getSiteContent } from '../../lib/content';
+import { getMainNav } from '../../lib/pages';
+import { resolveBrandLogo } from '../../lib/images';
+import MoreDropdown from './MoreDropdown.astro';
+import MobileMenu from './MobileMenu.astro';
+
+interface Props {
+  currentPath?: string;
+  transparentHeader?: boolean;
+}
+
+const { currentPath = '', transparentHeader = false } = Astro.props;
+const site = await getSiteContent();
+const mainNav = await getMainNav();
+const logoImage = await resolveBrandLogo(site.brand.logo, false);
+---
+
+<header
+  class:list={['site-header', { 'header--scrolled': !transparentHeader }]}
+  data-site-header
+  data-transparent-header={transparentHeader ? '' : undefined}
+>
+  <div class="header-inner container">
+    <!-- Brand -->
+    <a href="/" class="brand-link" aria-label={site.brand.name}>
+      <div class="logo-slot">
+        <Image src={logoImage} alt="" width={44} height={44} class="logo-img" />
+      </div>
+      {site.brand.showWordmark && (
+        <span class="wordmark">
+          <span>Centre for</span>
+          <span>Artificial Intelligence</span>
+        </span>
+      )}
+    </a>
+
+    <!-- Desktop Nav Pill -->
+    <nav class="nav-pill" aria-label="Main Navigation">
+      <ul class="nav-pill-list">
+        {mainNav.map(item => {
+          const isActive = currentPath === item.route;
+          return (
+            <li class="nav-pill-item">
+              <a
+                href={item.route}
+                class:list={['nav-pill-link', { 'is-active': isActive }]}
+                aria-current={isActive ? 'page' : undefined}
+              >
+                {item.title}
+              </a>
+            </li>
+          );
+        })}
+        <li class="nav-pill-item">
+          <MoreDropdown currentPath={currentPath} />
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Desktop CTA Button -->
+    <div class="header-cta-slot">
+      <a href={site.headerCta.href} class="header-cta-btn">
+        <span>{site.headerCta.label}</span>
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8H13M13 8L8.5 3.5M13 8L8.5 12.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Mobile Hamburger Trigger -->
+    <button
+      type="button"
+      class="hamburger-button"
+      aria-label={site.ui.openMenu}
+      aria-controls="mobile-menu-overlay"
+      aria-expanded="false"
+      data-menu-open
+    >
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+      <span class="hamburger-bar"></span>
+    </button>
+  </div>
+</header>
+
+<MobileMenu currentPath={currentPath} />
+
+<script>
+  import '../../scripts/header';
+</script>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    transition: background-color var(--ease-hover) var(--ease),
+                border-color var(--ease-hover) var(--ease),
+                backdrop-filter var(--ease-hover) var(--ease);
+    border-bottom: 1px solid transparent;
+    background-color: transparent;
+  }
+
+  .site-header.header--scrolled {
+    background-color: rgba(5, 6, 10, 0.85);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 76px;
+  }
+
+  /* Brand */
+  .brand-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    text-decoration: none;
+    color: var(--color-text);
+    flex-shrink: 0;
+  }
+
+  .logo-slot {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logo-img {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    border-radius: var(--radius-pill);
+  }
+
+  .wordmark {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  /* Desktop Nav Pill */
+  .nav-pill {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .nav-pill {
+      display: block;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-pill);
+      padding: var(--space-1) var(--space-4);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .nav-pill-list {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-pill-link {
+      display: inline-block;
+      padding: var(--space-1) var(--space-2);
+      color: var(--color-text-muted);
+      font-size: var(--text-small);
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: var(--radius-pill);
+      transition: color var(--ease-hover) var(--ease);
+    }
+
+    .nav-pill-link:hover {
+      color: var(--color-text);
+    }
+
+    .nav-pill-link.is-active {
+      color: var(--color-text);
+      text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+    }
+  }
+
+  /* Desktop CTA */
+  .header-cta-slot {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .header-cta-slot {
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .header-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      height: 44px;
+      padding: 0 22px;
+      background-color: var(--color-button-bg);
+      color: var(--color-button-text);
+      border-radius: var(--radius-pill);
+      font-size: var(--text-small);
+      font-weight: 500;
+      text-decoration: none;
+      box-shadow: var(--shadow-button);
+      transition: transform var(--ease-hover) var(--ease),
+                  box-shadow var(--ease-hover) var(--ease);
+    }
+
+    .header-cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 35px rgba(255, 255, 255, 0.2);
+    }
+
+    .header-cta-btn:active {
+      transform: scale(0.98);
+    }
+  }
+
+  /* Mobile Hamburger */
+  .hamburger-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .hamburger-bar {
+    width: 22px;
+    height: 2px;
+    background-color: var(--color-text);
+    border-radius: 2px;
+    transition: transform var(--ease-hover) var(--ease),
+                opacity var(--ease-hover) var(--ease);
+  }
+
+  @media (min-width: 1024px) {
+    .hamburger-button {
+      display: none;
+    }
+  }
+</style>

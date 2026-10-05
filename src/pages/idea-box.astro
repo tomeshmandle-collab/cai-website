@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPageByRoute } from '../lib/pages';
+
+const page = await getPageByRoute('/idea-box');
+---
+
+<BaseLayout title={page?.title ?? 'Idea Box'} noindex={true}>
+  <h1 class="visually-hidden">{page?.title ?? 'Idea Box'}</h1>
+</BaseLayout>

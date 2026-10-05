@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPageByRoute } from '../lib/pages';
+
+const page = await getPageByRoute('/projects');
+---
+
+<BaseLayout title={page?.title ?? 'Projects'} noindex={true}>
+  <h1 class="visually-hidden">{page?.title ?? 'Projects'}</h1>
+</BaseLayout>

@@ -193,3 +193,6 @@ Before launch: Lighthouse on the deployed URL, a real phone test, reduced-motion
 | 2026-10-05 | Past Teams removed; Projects shows "Launching soon" | No history or projects to show yet |
 | 2026-10-05 | Rules file is `AGENTS.md` at the project root | Antigravity reads `AGENTS.md` as rules |
 | 2026-10-05 | Phase 0 completed: Astro v5.4.2, @fontsource/figtree v5.3.0, @fontsource/newsreader v5.3.0 pinned; folder structure and assets positioned | Phase 0 setup and first deploy preparation |
+| 2026-10-05 | Phase 1A completed: tokens.css, base.css, utilities.css, Zod config, lib helpers, SVG placeholders | Design system foundation and content validation |
+| 2026-10-05 | Phase 1B completed: BaseLayout, Header with desktop nav pill & More dropdown, MobileMenu with focus trap, Footer with 4-column layout & mobile order, 12 blank pages, sitemap.xml, robots.txt | Layout shell, navigation, and blank pages |
+

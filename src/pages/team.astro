@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPageByRoute } from '../lib/pages';
+
+const page = await getPageByRoute('/team');
+---
+
+<BaseLayout title={page?.title ?? 'Team'}>
+  <div class="container temp-page-content">
+    <h1>{page?.title ?? 'Team'}</h1>
+  </div>
+</BaseLayout>
+
+<style>
+  .temp-page-content {
+    padding-block: var(--space-8);
+  }
+
+  h1 {
+    font-size: var(--text-h2-serif);
+    font-family: var(--font-serif);
+  }
+</style>

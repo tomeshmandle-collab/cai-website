@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPageByRoute } from '../lib/pages';
+
+const page = await getPageByRoute('/cookies');
+---
+
+<BaseLayout title={page?.title ?? 'Cookie Policy'} noindex={true}>
+  <h1 class="visually-hidden">{page?.title ?? 'Cookie Policy'}</h1>
+</BaseLayout>

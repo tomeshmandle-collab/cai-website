@@ -1,0 +1,31 @@
+---
+import { getSiteContent } from '../../lib/content';
+
+const site = await getSiteContent();
+---
+
+<a href="#main" class="skip-link">
+  {site.ui.skipToContent}
+</a>
+
+<style>
+  .skip-link {
+    position: absolute;
+    top: var(--space-4);
+    left: var(--space-4);
+    z-index: 999;
+    padding: var(--space-2) var(--space-4);
+    background-color: var(--color-button-bg);
+    color: var(--color-button-text);
+    border-radius: var(--radius-pill);
+    font-size: var(--text-small);
+    font-weight: 500;
+    text-decoration: none;
+    transform: translateY(-200%);
+    transition: transform var(--ease-hover) var(--ease);
+  }
+
+  .skip-link:focus {
+    transform: translateY(0);
+  }
+</style>

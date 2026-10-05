@@ -1,0 +1,141 @@
+---
+import { getMoreNav } from '../../lib/pages';
+import { getSiteContent } from '../../lib/content';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '' } = Astro.props;
+const site = await getSiteContent();
+const moreItems = await getMoreNav();
+
+const isMoreActive = moreItems.some(item => {
+  if (item.route === '/') return currentPath === '/';
+  return currentPath.startsWith(item.route);
+});
+---
+
+<div class="more-dropdown-container">
+  <button
+    type="button"
+    class:list={['more-trigger', { 'is-active': isMoreActive }]}
+    aria-expanded="false"
+    aria-haspopup="true"
+    aria-controls="more-menu"
+    data-dropdown-trigger
+  >
+    <span>{site.ui.moreMenu}</span>
+    <svg
+      class="chevron"
+      data-dropdown-chevron
+      width="12"
+      height="12"
+      viewBox="0 0 12 12"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M2.5 4.5L6 8L9.5 4.5"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </svg>
+  </button>
+
+  <div id="more-menu" class="more-menu" hidden data-dropdown-menu role="menu">
+    <div class="more-menu-inner">
+      {moreItems.map(item => {
+        const isActive = currentPath === item.route;
+        return (
+          <a
+            href={item.route}
+            class:list={['more-item', { 'is-active': isActive }]}
+            role="menuitem"
+          >
+            {item.title}
+          </a>
+        );
+      })}
+    </div>
+  </div>
+</div>
+
+<script>
+  import '../../scripts/dropdown';
+</script>
+
+<style>
+  .more-dropdown-container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .more-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--color-text-muted);
+    font-size: var(--text-small);
+    font-weight: 500;
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    cursor: pointer;
+    transition: color var(--ease-hover) var(--ease);
+  }
+
+  .more-trigger:hover,
+  .more-trigger.is-active {
+    color: var(--color-text);
+  }
+
+  .chevron {
+    transition: transform var(--ease-hover) var(--ease);
+  }
+
+  .more-menu {
+    position: absolute;
+    top: calc(100% + var(--space-3));
+    right: 0;
+    min-width: 180px;
+    z-index: 100;
+  }
+
+  .more-menu-inner {
+    padding: var(--space-2);
+    background-color: rgba(10, 12, 20, 0.95);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .more-item {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    border-radius: calc(var(--radius-card) - 6px);
+    color: var(--color-text-muted);
+    font-size: var(--text-small);
+    text-decoration: none;
+    transition: background-color var(--ease-hover) var(--ease), color var(--ease-hover) var(--ease);
+    white-space: nowrap;
+  }
+
+  .more-item:hover {
+    background-color: var(--color-surface-hover);
+    color: var(--color-text);
+  }
+
+  .more-item.is-active {
+    color: var(--color-text);
+    background-color: var(--color-surface);
+  }
+</style>

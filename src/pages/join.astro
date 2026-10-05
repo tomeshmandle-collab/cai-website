@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getPageByRoute } from '../lib/pages';
+
+const page = await getPageByRoute('/join');
+---
+
+<BaseLayout title={page?.title ?? 'Join CAI'} noindex={true}>
+  <h1 class="visually-hidden">{page?.title ?? 'Join CAI'}</h1>
+</BaseLayout>
