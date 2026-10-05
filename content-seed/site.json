@@ -1,0 +1,107 @@
+{
+  "brand": {
+    "name": "Centre for Artificial Intelligence",
+    "shortName": "CAI",
+    "logo": "cai-logo",
+    "showWordmark": true,
+    "tagline": "Where mind leads & AI assists."
+  },
+  "headerCta": {
+    "label": "Get started",
+    "href": "/join"
+  },
+  "seo": {
+    "siteTitle": "Centre for Artificial Intelligence | Kirori Mal College",
+    "defaultDescription": "The Centre for Artificial Intelligence, Kirori Mal College, is Delhi University's first AI-based learning and innovation ecosystem.",
+    "shareImage": ""
+  },
+  "footer": {
+    "navigateTitle": "Navigate",
+    "navigate": [
+      {
+        "label": "Home",
+        "href": "/"
+      },
+      {
+        "label": "About us",
+        "href": "/about"
+      },
+      {
+        "label": "Team",
+        "href": "/team"
+      },
+      {
+        "label": "Projects",
+        "href": "/projects"
+      },
+      {
+        "label": "Events",
+        "href": "/events"
+      },
+      {
+        "label": "More",
+        "href": "/contact"
+      }
+    ],
+    "contactTitle": "Get in Touch",
+    "email": "cai@college.edu",
+    "phone": "+91 98765 43210",
+    "addressLines": [
+      "ABC College",
+      "City, State 560001"
+    ],
+    "affiliationTitle": "Our Affiliation",
+    "affiliation": {
+      "logo": "affiliation-logo",
+      "name": "ABC College of Engineering",
+      "line1": "An Autonomous Institution",
+      "line2": "Affiliated to XYZ University"
+    },
+    "socials": [
+      {
+        "platform": "linkedin",
+        "label": "LinkedIn",
+        "url": ""
+      },
+      {
+        "platform": "instagram",
+        "label": "Instagram",
+        "url": ""
+      },
+      {
+        "platform": "x",
+        "label": "X",
+        "url": ""
+      },
+      {
+        "platform": "youtube",
+        "label": "YouTube",
+        "url": ""
+      }
+    ],
+    "copyrightText": "Centre for AI. All rights reserved.",
+    "legal": [
+      {
+        "label": "Privacy Policy",
+        "href": "/privacy"
+      },
+      {
+        "label": "Terms of Use",
+        "href": "/terms"
+      },
+      {
+        "label": "Cookie Policy",
+        "href": "/cookies"
+      }
+    ]
+  },
+  "ui": {
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "moreMenu": "More",
+    "previous": "Previous",
+    "next": "Next",
+    "photoPlaceholderAlt": "Photo coming soon"
+  }
+}

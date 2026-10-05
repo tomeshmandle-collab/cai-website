@@ -1,0 +1,310 @@
+{
+  "currentYear": "2026–27",
+  "hero": {
+    "pill": "OUR PEOPLE",
+    "headingLine1": "The team behind",
+    "headingLine2": "Centre for",
+    "headingAccent": "Artificial Intelligence",
+    "sublineTemplate": "{PeopleWord} people, {functionsWord} functions, one centre — meet the operating body running CAI this year.",
+    "cta": {
+      "label": "Scroll to meet the team",
+      "href": "#the-team"
+    },
+    "cornerTopLeft": [
+      "PEOPLE",
+      "IDEAS",
+      "INTELLIGENCE",
+      "FOR A BRIGHTER TOMORROW"
+    ],
+    "arcWords": [
+      "PEOPLE",
+      "DRIVE",
+      "POSSIBILITIES"
+    ]
+  },
+  "stepper": [
+    {
+      "id": "our-structure",
+      "number": "01",
+      "label": "OUR STRUCTURE"
+    },
+    {
+      "id": "the-team",
+      "number": "02",
+      "label": "THE TEAM"
+    },
+    {
+      "id": "the-collective",
+      "number": "03",
+      "label": "THE COLLECTIVE"
+    }
+  ],
+  "structure": {
+    "eyebrowTemplate": "{FUNCTIONSWORD} FUNCTIONS, ONE CENTRE",
+    "heading": "How the centre is organised.",
+    "intro": "Each head owns a function — together they run everything from courses to campus events."
+  },
+  "functions": [
+    {
+      "id": "leadership",
+      "name": "Leadership",
+      "icon": "user",
+      "description": "Sets direction, represents CAI externally, and signs off on major decisions."
+    },
+    {
+      "id": "advisory",
+      "name": "Advisory",
+      "icon": "message-circle",
+      "description": "Faculty and senior guidance on strategy, partnerships, and academic direction."
+    },
+    {
+      "id": "tech-social-media",
+      "name": "Tech & Social Media",
+      "icon": "laptop",
+      "description": "Runs the centre's online presence, website, and technical infrastructure."
+    },
+    {
+      "id": "ai-implementation",
+      "name": "AI Implementation",
+      "icon": "box",
+      "description": "Leads applied AI projects from idea to working build."
+    },
+    {
+      "id": "ai-board",
+      "name": "AI Board",
+      "icon": "book-open",
+      "description": "Curates and validates AI updates, content and research direction."
+    },
+    {
+      "id": "events-outreach",
+      "name": "Events & Outreach",
+      "icon": "calendar",
+      "description": "Plans workshops, speaker sessions, and outreach across the university."
+    },
+    {
+      "id": "finance-operations",
+      "name": "Finance & Operations",
+      "icon": "database",
+      "description": "Manages budgets, logistics, and day-to-day running of the centre."
+    },
+    {
+      "id": "members",
+      "name": "Members",
+      "icon": "users",
+      "hasCoreMembers": false,
+      "description": "The wider AI-enthusiast community CAI exists to serve."
+    }
+  ],
+  "theTeam": {
+    "eyebrowTemplate": "CURRENT TEAM · {currentYear}",
+    "heading": "Meet the people running CAI.",
+    "introTemplate": "{PeopleWord} individuals. Different roles. A shared belief in what AI can make possible.",
+    "groups": [
+      {
+        "id": "leadership-advisory",
+        "title": "Leadership & Advisory",
+        "functions": [
+          "leadership",
+          "advisory"
+        ]
+      },
+      {
+        "id": "tech-social-media",
+        "title": "Tech & Social Media",
+        "functions": [
+          "tech-social-media"
+        ]
+      },
+      {
+        "id": "ai",
+        "title": "AI Implementation & AI Board",
+        "functions": [
+          "ai-implementation",
+          "ai-board"
+        ]
+      },
+      {
+        "id": "events-outreach",
+        "title": "Events & Outreach",
+        "functions": [
+          "events-outreach"
+        ]
+      },
+      {
+        "id": "finance-operations",
+        "title": "Finance & Operations",
+        "functions": [
+          "finance-operations"
+        ]
+      }
+    ]
+  },
+  "members": [
+    {
+      "id": "member-01",
+      "name": "Full Name",
+      "role": "President",
+      "function": "leadership",
+      "photo": "",
+      "focus": "center",
+      "link": ""
+    },
+    {
+      "id": "member-02",
+      "name": "Full Name",
+      "role": "Vice President",
+      "function": "leadership",
+      "photo": "",
+      "focus": "center",
+      "link": ""
+    },
+    {
+      "id": "member-03",
+      "name": "Full Name",
+      "role": "Vice President",
+      "function": "leadership",
+      "photo": "",
+      "focus": "center",
+      "link": ""
+    },
+    {
+      "id": "member-04",
+      "name": "Full Name",
+      "role": "Vice President",
+      "function": "leadership",
+      "photo": "",
+      "focus": "center",
+      "link": ""
+    },
+    {
+      "id": "member-05",
+      "name": "Full Name",
+      "role": "Advisory",
+      "function": "advisory",
+      "photo": "",
+      "focus": "center",
+      "link": ""
+    },
+    {
+      "id": "member-06",
+      "name": "Full Name",
+      "role": "Tech & Social Media Head",
+      "function": "tech-social-media",
+      "photo": "",
+      "focus": "center",
+      "link": ""
+    },
+    {
+      "id": "member-07",
+      "name": "Full Name",
+      "role": "Tech & Social Media Head",
+      "function": "tech-social-media",
+      "photo": "",
+      "focus": "center",
+      "link": ""
+    },
+    {
+      "id": "member-08",
+      "name": "Full Name",
+      "role": "Tech & Social Media Vice Head",
+      "function": "tech-social-media",
+      "photo": "",
+      "focus": "center",
+      "link": ""
+    },
+    {
+      "id": "member-09",
+      "name": "Full Name",
+      "role": "AI Implementation Head",
+      "function": "ai-implementation",
+      "photo": "",
+      "focus": "center",
+      "link": ""
+    },
+    {
+      "id": "member-10",
+      "name": "Full Name",
+      "role": "AI Board Head",
+      "function": "ai-board",
+      "photo": "",
+      "focus": "center",
+      "link": ""
+    },
+    {
+      "id": "member-11",
+      "name": "Full Name",
+      "role": "Events & Outreach Head",
+      "function": "events-outreach",
+      "photo": "",
+      "focus": "center",
+      "link": ""
+    },
+    {
+      "id": "member-12",
+      "name": "Full Name",
+      "role": "Events & Outreach Head",
+      "function": "events-outreach",
+      "photo": "",
+      "focus": "center",
+      "link": ""
+    },
+    {
+      "id": "member-13",
+      "name": "Full Name",
+      "role": "Finance & Operations Head",
+      "function": "finance-operations",
+      "photo": "",
+      "focus": "center",
+      "link": ""
+    },
+    {
+      "id": "member-14",
+      "name": "Full Name",
+      "role": "Finance & Operations Head",
+      "function": "finance-operations",
+      "photo": "",
+      "focus": "center",
+      "link": ""
+    },
+    {
+      "id": "member-15",
+      "name": "Full Name",
+      "role": "Finance & Operations Head",
+      "function": "finance-operations",
+      "photo": "",
+      "focus": "center",
+      "link": ""
+    }
+  ],
+  "collective": {
+    "eyebrow": "DIFFERENT ROLES. A SHARED PURPOSE.",
+    "heading": {
+      "plain": "Many roles.",
+      "accent": "One centre."
+    },
+    "bodyTemplate": "From research and projects to events and community, we're a team of {people} driven by curiosity, collaboration and a desire to make AI accessible to everyone.",
+    "sideWordsTemplate": [
+      "{PEOPLEWORD} PEOPLE",
+      "{FUNCTIONSWORD} FUNCTIONS",
+      "ONE CENTRE"
+    ],
+    "stats": [
+      {
+        "value": "{people}",
+        "label": "People"
+      },
+      {
+        "value": "{functions}",
+        "label": "Functions"
+      },
+      {
+        "value": "1",
+        "label": "Centre"
+      }
+    ],
+    "purposeCard": {
+      "title": "A shared purpose",
+      "text": "Making AI accessible to everyone."
+    }
+  }
+}
