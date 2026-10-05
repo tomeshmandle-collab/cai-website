@@ -46,7 +46,7 @@ Give CAI a professional, long-lived public identity: who the centre is, what it 
 | Route | Status | Notes |
 |---|---|---|
 | `/` Home | **Build** | Hero + 4 stepped sections |
-| `/team` Team | **Build** | Hero + 3 stepped sections |
+| `/team` Team | **Build** | Hero + 2 stepped sections |
 | `/about`, `/projects`, `/events`, `/achievements`, `/ai-updates`, `/idea-box`, `/collaborate`, `/contact`, `/join`, `/privacy`, `/terms`, `/cookies` | **Blank page** | Shared header and footer, empty main area, hidden page title, not indexed |
 
 ### 5.2 Facts and decisions fixed for this release
@@ -54,7 +54,7 @@ Give CAI a professional, long-lived public identity: who the centre is, what it 
 - College name shown in copy: **Kirori Mal College** (changeable in one place).
 - The statement "Delhi University's first AI-based learning and innovation ecosystem" is **verified** and used as written.
 - Team: **15 core members, 8 functions**. Members may be unnamed for now; the design's text ("Full Name") is kept as placeholder.
-- The Team page stepper counts each step once: Our structure, The team, The collective.
+- The Team page stepper counts each step once: Our structure, The team.
 - Projects section shows **"Launching soon"** until real projects exist.
 - Footer contact and affiliation texts stay as in the design for now.
 - The header/footer logo and the footer affiliation logo are **uploaded by the owner**; reserved slots with placeholders ship first.
@@ -94,14 +94,13 @@ Give CAI a professional, long-lived public identity: who the centre is, what it 
 | ID | Requirement |
 |---|---|
 | T-1 | Hero: pill "OUR PEOPLE", three-line heading with italic accent line, computed subline, "Scroll to meet the team" button, corner text, arc graphic with the words PEOPLE / DRIVE / POSSIBILITIES. |
-| T-2 | Stepper with three steps: Our structure, The team, The collective (counted once). |
+| T-2 | Stepper with two steps: Our structure, The team (counted once). |
 | T-3 | *Our structure*: eyebrow computed from the number of functions; eight function cards (4×2 desktop, 2×4 mobile). Cards are static unless a card has a link. |
 | T-4 | *The team*: five groups (Leadership & Advisory; Tech & Social Media; AI Implementation & AI Board; Events & Outreach; Finance & Operations), each with a title, a count, and member cards. |
 | T-5 | **One fixed card size** for every member card (4:5 photo ratio). Desktop: left-aligned wrap. Mobile: swipe carousel with previous/next buttons and dots. |
 | T-6 | Member card shows photo (black-and-white, cropped to ratio, optional focus point), name, role in accent colour, function in grey. An arrow appears only if the member has a link. |
 | T-7 | A missing photo shows a placeholder portrait; the page never breaks. |
 | T-8 | Counts ("Fifteen people", "eight functions", "15", "8", group counts) are computed from the data. |
-| T-9 | *The collective*: eyebrow, heading with accent, body text with the people count, side words (desktop), stat cards (mobile). |
 | T-10 | Adding a member = add one JSON entry and drop one photo file. Counts update automatically. |
 
 ## 7. Non-functional requirements

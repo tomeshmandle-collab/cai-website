@@ -196,24 +196,7 @@ const team = defineCollection({
       photo: z.string().optional().or(z.literal('')),
       focus: z.string().optional(),
       link: z.string().optional().or(z.literal('')),
-    })),
-    collective: z.object({
-      eyebrow: z.string(),
-      heading: z.object({
-        plain: z.string(),
-        accent: z.string(),
-      }),
-      bodyTemplate: z.string(),
-      sideWordsTemplate: z.array(z.string()),
-      stats: z.array(z.object({
-        value: z.string(),
-        label: z.string(),
-      })),
-      purposeCard: z.object({
-        title: z.string(),
-        text: z.string(),
-      })
-    })
+    }))
   })
 });
 

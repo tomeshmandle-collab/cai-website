@@ -145,13 +145,12 @@ Skip to content · Open menu · Close menu · More · Previous · Next · Photo 
 - Corner text, top left: PEOPLE / IDEAS / INTELLIGENCE / FOR A BRIGHTER TOMORROW
 - Words beside the arc: PEOPLE / DRIVE / POSSIBILITIES
 
-### 3.2 Side stepper (counted once, three steps)
+### 3.2 Side stepper (counted once, two steps)
 
 | Number | Label | Section |
 |---|---|---|
 | 01 | OUR STRUCTURE | `#our-structure` |
 | 02 | THE TEAM | `#the-team` |
-| 03 | THE COLLECTIVE | `#the-collective` |
 
 > The design repeated "The team" and showed two "03" entries, and had a fourth step for Past Teams. This is fixed: each step appears once and Past Teams is removed for now.
 
@@ -193,14 +192,6 @@ Each group shows its title and a count (number of people in it). Every card show
 All 15 entries currently have the name **Full Name** (*placeholder*), no photo (a placeholder portrait shows) and no link (so no arrow). Two small fixes to the design's role text: "Event & Outreach Head" became "Events & Outreach Head", and the cut-off "Vice & Social Media Head" became "Tech & Social Media Vice Head". Both are one-line edits in `team.json`.
 
 ### 3.5 Section 03 — The collective (`#the-collective`)
-
-- Eyebrow: DIFFERENT ROLES. A SHARED PURPOSE.
-- Heading: Many roles. / *One centre.* (second line italic serif, magenta)
-- Body: From research and projects to events and community, we're a team of {people} driven by curiosity, collaboration and a desire to make AI accessible to everyone.  → today: "…we're a team of 15 driven by…"
-- Desktop side words: FIFTEEN PEOPLE / EIGHT FUNCTIONS / ONE CENTRE
-- Mobile stat cards: 15 People · 8 Functions · 1 Centre, then a card: **A shared purpose** — Making AI accessible to everyone.
-
-### 3.6 Removed for now
 
 Past Teams section ("Our history / Past teams."), the year cards (2025–26 to 2022–23) and the "View Previous Teams" button. See `future_scope.md` for the plan to bring them back.
 

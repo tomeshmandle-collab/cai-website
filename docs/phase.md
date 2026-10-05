@@ -165,8 +165,7 @@ Acceptance
 
 Commit: `feat(team): function grid, member cards and carousel`
 
-### 3C — Collective, page bottom, mobile pass
-- [ ] Collective section per `design.md` 5.4 (desktop side words, mobile stat cards).
+### 3C — Page bottom, mobile pass
 - [ ] Page-bottom band; no Past Teams.
 - [ ] Compare with `teams_webpage_mobile_version.png` and fix.
 
@@ -174,7 +173,7 @@ Acceptance
 - [ ] Counts shown everywhere equal the data (15 / 8).
 - [ ] Layout checked at 320, 390, 768, 1024, 1440 px.
 
-Commit: `feat(team): collective section and mobile pass` · Tag: `phase-3`
+Commit: `feat(team): page bottom and mobile pass` · Tag: `phase-3`
 
 ---
 

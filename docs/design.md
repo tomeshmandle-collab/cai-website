@@ -121,7 +121,7 @@ A vertical rail with numbered circular nodes and labels.
 - The rail line between nodes is 1–2 px, light grey; a purple/white fill grows to the active node.
 - Behaviour: highlights the section nearest the viewport centre (IntersectionObserver); clicking a step smooth-scrolls to its section (instant if reduced motion). Updates the URL hash without jumping.
 - **Below 1024:** the compact in-section version from the mobile design: the stepper sits at the top of each section showing the list with the current step emphasised, not sticky.
-- Counting: Home has 4 steps, Team has 3 steps. Each label appears once.
+- Counting: Home has 4 steps, Team has 2 steps. Each label appears once.
 
 ### 3.7 Footer
 Black (`--color-bg-deep`), four columns separated by thin vertical lines on desktop: (1) logo, wordmark, tagline, social icons; (2) Navigate; (3) Get in Touch with email, phone, address icons; (4) Our Affiliation with the affiliation logo and three text lines. A thin horizontal line, then the copyright on the left and the three legal links on the right. Mobile: single column in the order shown in the mobile design (logo + tagline + socials, Navigate, Get in Touch, Our Affiliation, copyright, legal links). Navigate links show an arrow on mobile.
@@ -178,11 +178,8 @@ Stepper column + content. Eyebrow (magenta caps), serif heading, intro on the ri
 ### 5.3 Section 02 — The team
 Eyebrow "CURRENT TEAM · 2026–27", serif heading, intro on the right. Then the five groups described in 3.9 / 3.10. Group spacing about 56 px.
 
-### 5.4 Section 03 — The collective
-Eyebrow, heading "Many roles." (white serif) and "One centre." (magenta italic serif), body text. Desktop right side: three wide-spaced words (FIFTEEN PEOPLE / EIGHT FUNCTIONS / ONE CENTRE) beside the arc graphic. Mobile: four stat cards (15 People, 8 Functions, 1 Centre, and a "A shared purpose" card with the sentence).
-
-### 5.5 Bottom of page
-The Past Teams section is removed. The page ends with the collective section, a soft particle-wave band, then the footer.
+### 5.4 Bottom of page
+The Past Teams section is removed. The page ends with the team section, a soft particle-wave band, then the footer.
 
 ## 6. Interaction states (applies everywhere)
 

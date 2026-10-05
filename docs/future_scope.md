@@ -137,7 +137,7 @@
 - **Removed for now:** the Past Teams section and "View Previous Teams".
 - **Plan:** team data grouped by academic year (for example `2026-27`), with the current year named in `site.json`. At year end, the current team's data is kept as an archive and a new year's data becomes current.
 - **Archive page:** a per-year page listing that year's functions and members, linked from a restored "Past teams" section on `/team`.
-- **Stepper:** the Team stepper is Structure → Team → Collective today. A fourth step is added only when the archive returns.
+- **Stepper:** the Team stepper is Structure → Team today. A fourth step is added only when the archive returns.
 
 ### Member profiles
 - **Today:** a card arrow appears only when the member has a link.

@@ -32,11 +32,6 @@
       "id": "the-team",
       "number": "02",
       "label": "THE TEAM"
-    },
-    {
-      "id": "the-collective",
-      "number": "03",
-      "label": "THE COLLECTIVE"
     }
   ],
   "structure": {
@@ -275,36 +270,5 @@
       "focus": "center",
       "link": ""
     }
-  ],
-  "collective": {
-    "eyebrow": "DIFFERENT ROLES. A SHARED PURPOSE.",
-    "heading": {
-      "plain": "Many roles.",
-      "accent": "One centre."
-    },
-    "bodyTemplate": "From research and projects to events and community, we're a team of {people} driven by curiosity, collaboration and a desire to make AI accessible to everyone.",
-    "sideWordsTemplate": [
-      "{PEOPLEWORD} PEOPLE",
-      "{FUNCTIONSWORD} FUNCTIONS",
-      "ONE CENTRE"
-    ],
-    "stats": [
-      {
-        "value": "{people}",
-        "label": "People"
-      },
-      {
-        "value": "{functions}",
-        "label": "Functions"
-      },
-      {
-        "value": "1",
-        "label": "Centre"
-      }
-    ],
-    "purposeCard": {
-      "title": "A shared purpose",
-      "text": "Making AI accessible to everyone."
-    }
-  }
+  ]
 }
