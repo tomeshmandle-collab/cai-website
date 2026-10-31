@@ -137,64 +137,64 @@
   "members": [
     {
       "id": "member-01",
-      "name": "Full Name",
+      "name": "Parth Dhingla",
       "role": "President",
       "function": "leadership",
-      "photo": "",
+      "photo": "Parth-Dhingla.png",
       "focus": "center",
       "link": ""
     },
     {
       "id": "member-02",
-      "name": "Full Name",
+      "name": "Khushi Agarwal",
       "role": "Vice President",
       "function": "leadership",
-      "photo": "",
+      "photo": "Khushi-Agarwal.png",
       "focus": "center",
       "link": ""
     },
     {
       "id": "member-03",
-      "name": "Full Name",
+      "name": "Yash Yadav",
       "role": "Vice President",
       "function": "leadership",
-      "photo": "",
+      "photo": "Yash-Yadav.png",
       "focus": "center",
       "link": ""
     },
     {
       "id": "member-04",
-      "name": "Full Name",
+      "name": "Diksha Nath",
       "role": "Vice President",
       "function": "leadership",
-      "photo": "",
+      "photo": "Diksha-Nath.png",
       "focus": "center",
       "link": ""
     },
     {
       "id": "member-05",
-      "name": "Full Name",
+      "name": "Ved Bhatia",
       "role": "Advisory",
       "function": "advisory",
-      "photo": "",
+      "photo": "Ved-Bhatia.png",
       "focus": "center",
       "link": ""
     },
     {
       "id": "member-06",
-      "name": "Full Name",
+      "name": "Vandana Kakkar",
       "role": "Tech & Social Media Head",
       "function": "tech-social-media",
-      "photo": "",
+      "photo": "Vandana-Kakkar.png",
       "focus": "center",
       "link": ""
     },
     {
       "id": "member-07",
-      "name": "Full Name",
+      "name": "Kapish Bhatia",
       "role": "Tech & Social Media Head",
       "function": "tech-social-media",
-      "photo": "",
+      "photo": "Kapish-Bhatia.png",
       "focus": "center",
       "link": ""
     },
@@ -209,64 +209,64 @@
     },
     {
       "id": "member-09",
-      "name": "Full Name",
+      "name": "Tomesh Mandle",
       "role": "AI Implementation Head",
       "function": "ai-implementation",
-      "photo": "",
+      "photo": "Tomesh-Mandle.png",
       "focus": "center",
       "link": ""
     },
     {
       "id": "member-10",
-      "name": "Full Name",
+      "name": "Ishita Sood",
       "role": "AI Board Head",
       "function": "ai-board",
-      "photo": "",
+      "photo": "Ishita-Sood.png",
       "focus": "center",
       "link": ""
     },
     {
       "id": "member-11",
-      "name": "Full Name",
+      "name": "Prince Agarwal",
       "role": "Events & Outreach Head",
       "function": "events-outreach",
-      "photo": "",
+      "photo": "Prince-Agarwal.png",
       "focus": "center",
       "link": ""
     },
     {
       "id": "member-12",
-      "name": "Full Name",
+      "name": "Anuj Kumar Singh",
       "role": "Events & Outreach Head",
       "function": "events-outreach",
-      "photo": "",
+      "photo": "Anuj-Kumar-Singh.png",
       "focus": "center",
       "link": ""
     },
     {
       "id": "member-13",
-      "name": "Full Name",
+      "name": "Yogita Singh Bundela",
       "role": "Finance & Operations Head",
       "function": "finance-operations",
-      "photo": "",
+      "photo": "Yogita-Singh-Bundela.png",
       "focus": "center",
       "link": ""
     },
     {
       "id": "member-14",
-      "name": "Full Name",
+      "name": "Vanie Mishra",
       "role": "Finance & Operations Head",
       "function": "finance-operations",
-      "photo": "",
+      "photo": "Vanie-Mishra.png",
       "focus": "center",
       "link": ""
     },
     {
       "id": "member-15",
-      "name": "Full Name",
+      "name": "Ankit Kumar",
       "role": "Finance & Operations Head",
       "function": "finance-operations",
-      "photo": "",
+      "photo": "Ankit-Kumar.png",
       "focus": "center",
       "link": ""
     }

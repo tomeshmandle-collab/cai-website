@@ -3,7 +3,7 @@
     "name": "Centre for Artificial Intelligence",
     "shortName": "CAI",
     "logo": "cai-logo",
-    "showWordmark": true,
+    "showWordmark": false,
     "tagline": "Where mind leads & AI assists."
   },
   "headerCta": {

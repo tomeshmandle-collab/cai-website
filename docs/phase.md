@@ -199,7 +199,7 @@ Commit: `fix: design review and quality pass` · Tag: `phase-4`
 
 ## Phase 5 — Real content and assets (do when you have them)
 
-- [ ] Upload `cai-logo.*` and `affiliation-logo.*` to `src/assets/brand/`; set `showWordmark` correctly.
+- [x] Upload `cai-logo.*` and `affiliation-logo.*` to `src/assets/brand/`; set `showWordmark` correctly.
 - [ ] Replace contact email, phone, address, affiliation text in `site.json`; add social URLs.
 - [ ] Replace "Full Name" entries with real names; add photos to `src/assets/team/`; set `photo` for each; add `link` where a profile exists.
 - [ ] Confirm the Technical Projects sentence and the footer "More" link target.
